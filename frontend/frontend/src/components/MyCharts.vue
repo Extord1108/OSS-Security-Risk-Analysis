@@ -13,7 +13,7 @@ export default {
   props: {
     height: {
       type: String,
-      default: '300px'
+      default: '400px'
     },
     width: {
       type: String,
