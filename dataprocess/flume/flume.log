@@ -1,0 +1,504 @@
+13 11月 2022 17:18:03,160 INFO  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.addComponentConfig:1203)  - Processing:r1
+13 11月 2022 17:18:03,166 INFO  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.addComponentConfig:1203)  - Processing:ri
+13 11月 2022 17:18:03,166 INFO  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.addComponentConfig:1203)  - Processing:r1
+13 11月 2022 17:18:03,166 INFO  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.addComponentConfig:1203)  - Processing:r1
+13 11月 2022 17:18:03,167 INFO  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.addProperty:1117)  - Added sinks: k1 Agent: a1
+13 11月 2022 17:18:03,167 INFO  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.addComponentConfig:1203)  - Processing:k1
+13 11月 2022 17:18:03,168 INFO  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.addComponentConfig:1203)  - Processing:k1
+13 11月 2022 17:18:03,168 INFO  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.addComponentConfig:1203)  - Processing:r1
+13 11月 2022 17:18:03,168 INFO  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.addComponentConfig:1203)  - Processing:c1
+13 11月 2022 17:18:03,168 INFO  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.addComponentConfig:1203)  - Processing:c1
+13 11月 2022 17:18:03,169 INFO  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.addComponentConfig:1203)  - Processing:r1
+13 11月 2022 17:18:03,169 INFO  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.addComponentConfig:1203)  - Processing:c1
+13 11月 2022 17:18:03,169 WARN  [main] (org.apache.flume.conf.FlumeConfiguration$AgentConfiguration.validateConfigFilterSet:623)  - Agent configuration for 'a1' has no configfilters.
+13 11月 2022 17:18:03,186 INFO  [main] (org.apache.flume.conf.FlumeConfiguration.validateConfiguration:163)  - Post-validation flume configuration contains configuration for agents: [a1]
+13 11月 2022 17:18:03,187 INFO  [main] (org.apache.flume.node.AbstractConfigurationProvider.loadChannels:154)  - Creating channels
+13 11月 2022 17:18:03,192 INFO  [main] (org.apache.flume.channel.DefaultChannelFactory.create:42)  - Creating instance of channel c1 type file
+13 11月 2022 17:18:03,208 INFO  [main] (org.apache.flume.node.AbstractConfigurationProvider.loadChannels:208)  - Created channel c1
+13 11月 2022 17:18:03,209 INFO  [main] (org.apache.flume.source.DefaultSourceFactory.create:41)  - Creating instance of source r1, type TAILDIR
+13 11月 2022 17:18:03,221 INFO  [main] (org.apache.flume.sink.DefaultSinkFactory.create:42)  - Creating instance of sink: k1, type: logger
+13 11月 2022 17:18:03,224 INFO  [main] (org.apache.flume.node.AbstractConfigurationProvider.getConfiguration:123)  - Channel c1 connected to [r1, k1]
+13 11月 2022 17:18:03,224 INFO  [main] (org.apache.flume.node.Application.initializeAllComponents:177)  - Initializing components
+13 11月 2022 17:18:03,225 INFO  [main] (org.apache.flume.node.Application.startAllComponents:207)  - Starting new configuration:{ sourceRunners:{r1=PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } }} sinkRunners:{k1=SinkRunner: { policy:org.apache.flume.sink.DefaultSinkProcessor@e84a8e1 counterGroup:{ name:null counters:{} } }} channels:{c1=FileChannel c1 { dataDirs: [.\middata] }} }
+13 11月 2022 17:18:03,225 INFO  [main] (org.apache.flume.node.Application.startAllComponents:214)  - Starting Channel c1
+13 11月 2022 17:18:03,228 INFO  [main] (org.apache.flume.node.Application.startAllComponents:229)  - Waiting for channel: c1 to start. Sleeping for 500 ms
+13 11月 2022 17:18:03,229 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.FileChannel.start:278)  - Starting FileChannel c1 { dataDirs: [.\middata] }...
+13 11月 2022 17:18:03,230 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.instrumentation.MonitoredCounterGroup.register:119)  - Monitored counter group for type: CHANNEL, name: c1: Successfully registered new MBean.
+13 11月 2022 17:18:03,230 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.instrumentation.MonitoredCounterGroup.start:95)  - Component type: CHANNEL, name: c1 started
+13 11月 2022 17:18:03,241 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.Log.<init>:356)  - Encryption is not enabled
+13 11月 2022 17:18:03,242 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.Log.replay:406)  - Replay started
+13 11月 2022 17:18:03,243 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.Log.replay:418)  - Found NextFileID 0, from []
+13 11月 2022 17:18:03,262 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.EventQueueBackingStoreFile.<init>:95)  - Preallocated .\checkpoint\checkpoint to 8008232 for capacity 1000000
+13 11月 2022 17:18:03,266 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.EventQueueBackingStoreFileV3.<init>:55)  - Starting up with .\checkpoint\checkpoint and .\checkpoint\checkpoint.meta
+13 11月 2022 17:18:03,340 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.FlumeEventQueue.<init>:115)  - QueueSet population inserting 0 took 0
+13 11月 2022 17:18:03,341 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.Log.replay:457)  - Last Checkpoint Sun Nov 13 17:18:03 CST 2022, queue depth = 0
+13 11月 2022 17:18:03,344 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.Log.doReplay:542)  - Replaying logs with v2 replay logic
+13 11月 2022 17:18:03,346 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.ReplayHandler.replayLog:249)  - Starting replay of []
+13 11月 2022 17:18:03,346 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.ReplayHandler.replayLog:345)  - read: 0, put: 0, take: 0, rollback: 0, commit: 0, skip: 0, eventCount:0
+13 11月 2022 17:18:03,347 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.FlumeEventQueue.replayComplete:417)  - Search Count = 0, Search Time = 0, Copy Count = 0, Copy Time = 0
+13 11月 2022 17:18:03,353 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.Log.replay:505)  - Rolling .\middata
+13 11月 2022 17:18:03,354 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.Log.roll:990)  - Roll start .\middata
+13 11月 2022 17:18:03,364 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.tools.DirectMemoryUtils.getDefaultDirectMemorySize:112)  - Unable to get maxDirectMemory from VM: ClassNotFoundException: sun.misc.VM
+13 11月 2022 17:18:03,366 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.tools.DirectMemoryUtils.allocate:48)  - Direct Memory Allocation:  Allocation = 1048576, Allocated = 0, MaxDirectMemorySize = 209715200, Remaining = 209715200
+13 11月 2022 17:18:03,400 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.LogFile$Writer.<init>:220)  - Opened .\middata\log-1
+13 11月 2022 17:18:03,410 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.Log.roll:1006)  - Roll end
+13 11月 2022 17:18:03,412 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.EventQueueBackingStoreFile.beginCheckpoint:230)  - Start checkpoint for .\checkpoint\checkpoint, elements to sync = 0
+13 11月 2022 17:18:03,417 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.EventQueueBackingStoreFile.checkpoint:255)  - Updating checkpoint metadata: logWriteOrderID: 1668331083354, queueSize: 0, queueHead: 0
+13 11月 2022 17:18:03,438 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.Log.writeCheckpoint:1065)  - Updated checkpoint for file: .\middata\log-1 position: 0 logWriteOrderID: 1668331083354
+13 11月 2022 17:18:03,442 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.channel.file.FileChannel.start:289)  - Queue Size after replay: 0 [channel=c1]
+13 11月 2022 17:18:03,734 INFO  [main] (org.apache.flume.node.Application.startAllComponents:241)  - Starting Sink k1
+13 11月 2022 17:18:03,735 INFO  [main] (org.apache.flume.node.Application.startAllComponents:252)  - Starting Source r1
+13 11月 2022 17:18:03,736 INFO  [lifecycleSupervisor-1-1] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:03,740 INFO  [lifecycleSupervisor-1-1] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:03,741 INFO  [lifecycleSupervisor-1-1] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:03,743 ERROR [lifecycleSupervisor-1-1] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:06,770 INFO  [lifecycleSupervisor-1-5] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:06,770 INFO  [lifecycleSupervisor-1-5] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:06,770 INFO  [lifecycleSupervisor-1-5] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:06,771 ERROR [lifecycleSupervisor-1-5] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:09,781 INFO  [lifecycleSupervisor-1-7] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:09,781 INFO  [lifecycleSupervisor-1-7] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:09,781 INFO  [lifecycleSupervisor-1-7] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:09,782 ERROR [lifecycleSupervisor-1-7] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:12,799 INFO  [lifecycleSupervisor-1-8] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:12,799 INFO  [lifecycleSupervisor-1-8] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:12,800 INFO  [lifecycleSupervisor-1-8] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:12,800 ERROR [lifecycleSupervisor-1-8] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:15,806 INFO  [lifecycleSupervisor-1-5] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:15,807 INFO  [lifecycleSupervisor-1-5] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:15,807 INFO  [lifecycleSupervisor-1-5] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:15,808 ERROR [lifecycleSupervisor-1-5] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:18,819 INFO  [lifecycleSupervisor-1-4] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:18,819 INFO  [lifecycleSupervisor-1-4] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:18,820 INFO  [lifecycleSupervisor-1-4] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:18,820 ERROR [lifecycleSupervisor-1-4] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:21,829 INFO  [lifecycleSupervisor-1-9] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:21,830 INFO  [lifecycleSupervisor-1-9] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:21,830 INFO  [lifecycleSupervisor-1-9] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:21,831 ERROR [lifecycleSupervisor-1-9] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:24,832 INFO  [lifecycleSupervisor-1-2] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:24,833 INFO  [lifecycleSupervisor-1-2] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:24,833 INFO  [lifecycleSupervisor-1-2] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:24,833 ERROR [lifecycleSupervisor-1-2] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:27,838 INFO  [lifecycleSupervisor-1-4] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:27,839 INFO  [lifecycleSupervisor-1-4] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:27,839 INFO  [lifecycleSupervisor-1-4] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:27,840 ERROR [lifecycleSupervisor-1-4] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:30,845 INFO  [lifecycleSupervisor-1-9] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:30,845 INFO  [lifecycleSupervisor-1-9] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:30,846 INFO  [lifecycleSupervisor-1-9] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:30,847 ERROR [lifecycleSupervisor-1-9] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:33,859 INFO  [lifecycleSupervisor-1-2] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:33,860 INFO  [lifecycleSupervisor-1-2] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:33,860 INFO  [lifecycleSupervisor-1-2] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:33,861 ERROR [lifecycleSupervisor-1-2] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:36,870 INFO  [lifecycleSupervisor-1-4] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:36,870 INFO  [lifecycleSupervisor-1-4] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:36,871 INFO  [lifecycleSupervisor-1-4] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:36,871 ERROR [lifecycleSupervisor-1-4] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:39,887 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:39,887 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:39,888 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:39,888 ERROR [lifecycleSupervisor-1-0] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:42,894 INFO  [lifecycleSupervisor-1-2] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:42,894 INFO  [lifecycleSupervisor-1-2] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:42,894 INFO  [lifecycleSupervisor-1-2] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:42,895 ERROR [lifecycleSupervisor-1-2] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:45,905 INFO  [lifecycleSupervisor-1-6] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:45,905 INFO  [lifecycleSupervisor-1-6] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:45,905 INFO  [lifecycleSupervisor-1-6] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:45,906 ERROR [lifecycleSupervisor-1-6] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:48,908 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:48,908 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:48,909 INFO  [lifecycleSupervisor-1-0] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:48,909 ERROR [lifecycleSupervisor-1-0] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:51,914 INFO  [lifecycleSupervisor-1-2] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:51,914 INFO  [lifecycleSupervisor-1-2] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:51,914 INFO  [lifecycleSupervisor-1-2] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:51,915 ERROR [lifecycleSupervisor-1-2] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:54,927 INFO  [lifecycleSupervisor-1-7] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:54,928 INFO  [lifecycleSupervisor-1-7] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:54,928 INFO  [lifecycleSupervisor-1-7] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:54,929 ERROR [lifecycleSupervisor-1-7] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:18:57,933 INFO  [lifecycleSupervisor-1-1] (org.apache.flume.source.taildir.TaildirSource.start:94)  - r1 TaildirSource source starting with directory: {f1=../spider/metadata.json}
+13 11月 2022 17:18:57,933 INFO  [lifecycleSupervisor-1-1] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:84)  - taildirCache: [{filegroup='f1', filePattern='../spider/metadata.json', cached=true}]
+13 11月 2022 17:18:57,933 INFO  [lifecycleSupervisor-1-1] (org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>:85)  - headerTable: {}
+13 11月 2022 17:18:57,934 ERROR [lifecycleSupervisor-1-1] (org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run:251)  - Unable to start PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } } - Exception follows.
+java.lang.UnsupportedOperationException: View 'unix' not available
+	at sun.nio.fs.AbstractFileSystemProvider.readAttributes(AbstractFileSystemProvider.java:93) ~[?:?]
+	at java.nio.file.Files.readAttributes(Files.java:2084) ~[?:?]
+	at java.nio.file.Files.getAttribute(Files.java:1983) ~[?:?]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.getInode(ReliableTaildirEventReader.java:284) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.updateTailFiles(ReliableTaildirEventReader.java:248) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:93) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader.<init>(ReliableTaildirEventReader.java:49) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.ReliableTaildirEventReader$Builder.build(ReliableTaildirEventReader.java:355) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.taildir.TaildirSource.start(TaildirSource.java:105) ~[flume-taildir-source-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.start(PollableSourceRunner.java:71) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor$MonitorRunnable.run(LifecycleSupervisor.java:249) [flume-ng-core-1.10.0.jar:1.10.0]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) [?:?]
+	at java.util.concurrent.FutureTask.runAndReset(FutureTask.java:305) [?:?]
+	at java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) [?:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+13 11月 2022 17:19:00,432 INFO  [agent-shutdown-hook] (org.apache.flume.node.Application.stopAllComponents:140)  - Shutting down configuration: { sourceRunners:{r1=PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } }} sinkRunners:{k1=SinkRunner: { policy:org.apache.flume.sink.DefaultSinkProcessor@e84a8e1 counterGroup:{ name:null counters:{runner.backoffs.consecutive=14, runner.backoffs=14} } }} channels:{c1=FileChannel c1 { dataDirs: [.\middata] }} }
+13 11月 2022 17:19:00,432 INFO  [agent-shutdown-hook] (org.apache.flume.node.Application.stopAllComponents:144)  - Stopping Source r1
+13 11月 2022 17:19:00,433 INFO  [agent-shutdown-hook] (org.apache.flume.lifecycle.LifecycleSupervisor.unsupervise:169)  - Stopping component: PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } }
+13 11月 2022 17:19:00,434 ERROR [agent-shutdown-hook] (org.apache.flume.node.Application.stopAllComponents:147)  - Error while stopping PollableSourceRunner: { source:Taildir source: { positionFile: ./taildir_position.json, skipToEnd: false, byteOffsetHeader: false, idleTimeout: 120000, writePosInterval: 3000 } counterGroup:{ name:null counters:{} } }
+java.lang.NullPointerException: Cannot read field "shouldStop" because "x0" is null
+	at org.apache.flume.source.PollableSourceRunner$PollingRunner.access$200(PollableSourceRunner.java:119) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.source.PollableSourceRunner.stop(PollableSourceRunner.java:90) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.lifecycle.LifecycleSupervisor.unsupervise(LifecycleSupervisor.java:170) ~[flume-ng-core-1.10.0.jar:1.10.0]
+	at org.apache.flume.node.Application.stopAllComponents(Application.java:145) [flume-ng-node-1.10.0.jar:1.10.0]
+	at org.apache.flume.node.Application.stop(Application.java:128) [flume-ng-node-1.10.0.jar:1.10.0]
+	at org.apache.flume.node.Application$1.run(Application.java:501) [flume-ng-node-1.10.0.jar:1.10.0]
+13 11月 2022 17:19:00,435 INFO  [agent-shutdown-hook] (org.apache.flume.node.Application.stopAllComponents:154)  - Stopping Sink k1
+13 11月 2022 17:19:00,435 INFO  [agent-shutdown-hook] (org.apache.flume.lifecycle.LifecycleSupervisor.unsupervise:169)  - Stopping component: SinkRunner: { policy:org.apache.flume.sink.DefaultSinkProcessor@e84a8e1 counterGroup:{ name:null counters:{runner.backoffs.consecutive=14, runner.backoffs=14} } }
+13 11月 2022 17:19:00,436 INFO  [agent-shutdown-hook] (org.apache.flume.node.Application.stopAllComponents:164)  - Stopping Channel c1
+13 11月 2022 17:19:00,436 INFO  [agent-shutdown-hook] (org.apache.flume.lifecycle.LifecycleSupervisor.unsupervise:169)  - Stopping component: FileChannel c1 { dataDirs: [.\middata] }
+13 11月 2022 17:19:00,436 INFO  [agent-shutdown-hook] (org.apache.flume.channel.file.FileChannel.stop:334)  - Stopping FileChannel c1 { dataDirs: [.\middata] }...
+13 11月 2022 17:19:00,438 INFO  [agent-shutdown-hook] (org.apache.flume.channel.file.EventQueueBackingStoreFile.beginCheckpoint:230)  - Start checkpoint for .\checkpoint\checkpoint, elements to sync = 0
+13 11月 2022 17:19:00,443 INFO  [agent-shutdown-hook] (org.apache.flume.channel.file.EventQueueBackingStoreFile.checkpoint:255)  - Updating checkpoint metadata: logWriteOrderID: 1668331083355, queueSize: 0, queueHead: 0
+13 11月 2022 17:19:00,453 INFO  [agent-shutdown-hook] (org.apache.flume.channel.file.Log.writeCheckpoint:1065)  - Updated checkpoint for file: .\middata\log-1 position: 0 logWriteOrderID: 1668331083355
+13 11月 2022 17:19:00,454 INFO  [agent-shutdown-hook] (org.apache.flume.channel.file.Log.shutdownWorker:881)  - Attempting to shutdown background worker.
+13 11月 2022 17:19:00,454 INFO  [agent-shutdown-hook] (org.apache.flume.channel.file.LogFile$Writer.close:384)  - Closing .\middata\log-1
+13 11月 2022 17:19:00,455 INFO  [agent-shutdown-hook] (org.apache.flume.channel.file.LogFile$RandomReader.close:520)  - Closing RandomReader .\middata\log-1
+13 11月 2022 17:19:00,462 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:149)  - Component type: CHANNEL, name: c1 stopped
+13 11月 2022 17:19:00,462 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:155)  - Shutdown Metric for type: CHANNEL, name: c1. channel.start.time == 1668331083230
+13 11月 2022 17:19:00,462 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:161)  - Shutdown Metric for type: CHANNEL, name: c1. channel.stop.time == 1668331140462
+13 11月 2022 17:19:00,462 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:177)  - Shutdown Metric for type: CHANNEL, name: c1. channel.capacity == 1000000
+13 11月 2022 17:19:00,462 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:177)  - Shutdown Metric for type: CHANNEL, name: c1. channel.current.size == 0
+13 11月 2022 17:19:00,463 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:177)  - Shutdown Metric for type: CHANNEL, name: c1. channel.event.put.attempt == 0
+13 11月 2022 17:19:00,463 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:177)  - Shutdown Metric for type: CHANNEL, name: c1. channel.event.put.success == 0
+13 11月 2022 17:19:00,463 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:177)  - Shutdown Metric for type: CHANNEL, name: c1. channel.event.take.attempt == 14
+13 11月 2022 17:19:00,463 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:177)  - Shutdown Metric for type: CHANNEL, name: c1. channel.event.take.success == 0
+13 11月 2022 17:19:00,463 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:177)  - Shutdown Metric for type: CHANNEL, name: c1. channel.file.checkpoint.backup.write.error == 0
+13 11月 2022 17:19:00,463 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:177)  - Shutdown Metric for type: CHANNEL, name: c1. channel.file.checkpoint.write.error == 0
+13 11月 2022 17:19:00,463 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:177)  - Shutdown Metric for type: CHANNEL, name: c1. channel.file.event.put.error == 0
+13 11月 2022 17:19:00,463 INFO  [agent-shutdown-hook] (org.apache.flume.instrumentation.MonitoredCounterGroup.stop:177)  - Shutdown Metric for type: CHANNEL, name: c1. channel.file.event.take.error == 0
+13 11月 2022 17:19:00,464 INFO  [agent-shutdown-hook] (org.apache.flume.lifecycle.LifecycleSupervisor.stop:78)  - Stopping lifecycle supervisor 36
