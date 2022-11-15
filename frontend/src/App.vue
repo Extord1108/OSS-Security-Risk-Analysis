@@ -51,7 +51,13 @@
         <el-col :span="6"><div class="grid-content bg-purple test_a">
           <el-row>
             <el-col :span="6" style="padding:10px; margin-right:20px">
-              <img class="image" src="./assets/images/home_art.jpg" :style="imgSize1" @mouseenter="mouseOver1" @mouseleave="mouseLeave">
+              <img 
+                class="image" 
+                src="./assets/images/home_art.jpg" 
+                :style="imgSize1" 
+                @mouseenter="mouseOver1" 
+                @mouseleave="mouseLeave"
+              >
             </el-col>
             <el-col :span="6" style="padding:10px; margin-left:20px">
               <h3 class="sub-title">当前总包数</h3>
@@ -62,7 +68,13 @@
         <el-col :span="6"><div class="grid-content bg-purple test_a">
           <el-row>
             <el-col :span="6" style="padding:10px; margin-right:20px">
-              <img class="image" src="./assets/images/home_fie.jpg" :style="imgSize2" @mouseenter="mouseOver2" @mouseleave="mouseLeave">
+              <img 
+                class="image" 
+                src="./assets/images/home_fie.jpg" 
+                :style="imgSize2" 
+                @mouseenter="mouseOver2" 
+                @mouseleave="mouseLeave"
+              >
             </el-col>
             <el-col :span="6" style="padding:10px; margin-left:20px">
               <h3 class="sub-title">被弃用包比例</h3>
@@ -73,7 +85,13 @@
         <el-col :span="6"><div class="grid-content bg-purple test_a">
           <el-row>
             <el-col :span="6" style="padding:10px; margin-right:20px">
-              <img class="image" src="./assets/images/home_aut.jpg" :style="imgSize3" @mouseenter="mouseOver3" @mouseleave="mouseLeave">
+              <img 
+                class="image" 
+                src="./assets/images/home_aut.jpg" 
+                :style="imgSize3" 
+                @mouseenter="mouseOver3" 
+                @mouseleave="mouseLeave"
+              >
             </el-col>
             <el-col :span="6" style="padding:10px; margin-left:20px">
               <h3 class="sub-title">恶意包比例</h3>
@@ -84,7 +102,13 @@
         <el-col :span="6"><div class="grid-content bg-purple test_a">
           <el-row>
             <el-col :span="6" style="padding:10px; margin-right:20px">
-              <img class="image" src="./assets/images/home_org.jpg" :style="imgSize4" @mouseenter="mouseOver4" @mouseleave="mouseLeave">
+              <img 
+                class="image" 
+                src="./assets/images/home_org.jpg" 
+                :style="imgSize4" 
+                @mouseenter="mouseOver4" 
+                @mouseleave="mouseLeave"
+              >
             </el-col>
             <el-col :span="6" style="padding:10px; margin-left:20px">
               <h3 class="sub-title">过期维护者</h3>

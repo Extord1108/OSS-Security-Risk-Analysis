@@ -9,6 +9,8 @@ const idGen = () => {
   return new Date().getTime()
 }
 
+//let myChart = null;
+
 export default {
   props: {
     height: {
@@ -72,10 +74,14 @@ export default {
   },
 
   mounted() {
-    // 准备实例
-    this.myChart = echarts.init(document.getElementById(this.uuid));
-    // 应用配置项
-    this.myChart.setOption(this.options);
+    setTimeout(() => {
+        // 准备实例
+        if(echarts.getInstanceByDom(document.getElementById(this.uuid)) == null) { 
+          this.myChart = echarts.init(document.getElementById(this.uuid));
+          // 应用配置项
+          this.myChart.setOption(this.options);
+        }
+    }, 400);
   }
 }
 </script>
