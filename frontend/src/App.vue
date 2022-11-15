@@ -6,11 +6,11 @@
         mode="horizontal"
         background-color="#FFF"
         style="padding-left: 0%; padding-right: 5%;">
-        <el-menu-item>风险分析</el-menu-item>
+        <el-menu-item style="font-size:larger; font-weight:600">风险分析</el-menu-item>
 
         <div class="input-box-body">
           <div class="input-box">
-            <el-dropdown @command="handleCommand" trigger="click" placement="bottom">
+            <el-dropdown>
               <el-input placeholder="请输入内容"
                         v-model="searchValue"
                         class="input-with-select"
@@ -35,6 +35,7 @@
                     v-html="highlight(item)">
                 </el-dropdown-item>
               </el-dropdown-menu> -->
+              <el-dropdown-menu></el-dropdown-menu>
             </el-dropdown>
           </div>
         </div>
@@ -46,11 +47,11 @@
     </el-header>
 
     <div class="logos">
-      <el-row gutter="0" justify="center" type="flex">
+      <el-row justify="center" type="flex">
         <el-col :span="6"><div class="grid-content bg-purple test_a">
           <el-row>
             <el-col :span="6" style="padding:10px; margin-right:20px">
-              <img class="image" src="./assets/images/home_org.jpg" :style="imgSize1" @mouseenter="mouseOver1" @mouseleave="mouseLeave">
+              <img class="image" src="./assets/images/home_art.jpg" :style="imgSize1" @mouseenter="mouseOver1" @mouseleave="mouseLeave">
             </el-col>
             <el-col :span="6" style="padding:10px; margin-left:20px">
               <h3 class="sub-title">当前总包数</h3>
@@ -64,7 +65,7 @@
               <img class="image" src="./assets/images/home_fie.jpg" :style="imgSize2" @mouseenter="mouseOver2" @mouseleave="mouseLeave">
             </el-col>
             <el-col :span="6" style="padding:10px; margin-left:20px">
-              <h3 class="sub-title">被弃用包数</h3>
+              <h3 class="sub-title">被弃用包比例</h3>
               <h2 class="sub-number">{{ statistic.desert_count }}</h2>
             </el-col>
           </el-row>
@@ -75,9 +76,35 @@
               <img class="image" src="./assets/images/home_aut.jpg" :style="imgSize3" @mouseenter="mouseOver3" @mouseleave="mouseLeave">
             </el-col>
             <el-col :span="6" style="padding:10px; margin-left:20px">
-              <h3 class="sub-title">恶意包数目</h3>
+              <h3 class="sub-title">恶意包比例</h3>
               <h2 class="sub-number">{{ statistic.mal_count }}</h2>
             </el-col>
+          </el-row>
+        </div></el-col>
+        <el-col :span="6"><div class="grid-content bg-purple test_a">
+          <el-row>
+            <el-col :span="6" style="padding:10px; margin-right:20px">
+              <img class="image" src="./assets/images/home_org.jpg" :style="imgSize4" @mouseenter="mouseOver4" @mouseleave="mouseLeave">
+            </el-col>
+            <el-col :span="6" style="padding:10px; margin-left:20px">
+              <h3 class="sub-title">过期维护者</h3>
+              <h2 class="sub-number">{{ statistic.exp_count }}</h2>
+            </el-col>
+          </el-row>
+        </div></el-col>
+      </el-row>
+    </div>
+
+    <div v-if="selected">
+      <el-row justify="left" type="flex">
+        <el-col :span="10"><div class="grid-content bg-purple test_a">
+          <el-row>
+            <el-alert class="results-box"
+              :title="results"
+              :type="info"
+              @close="close_result"
+              style="font-size:larger !important; font-weight:bold !important;">
+            </el-alert>
           </el-row>
         </div></el-col>
       </el-row>
@@ -87,7 +114,7 @@
       <div class="container">
         <el-card class="card">
           <el-col :span="15">
-            <div @mouseenter="mouseOver4" @mouseleave="mouseLeave2">
+            <div @mouseenter="mouseOver5" @mouseleave="mouseLeave2">
               <MyCharts :options="options" :width="width"></MyCharts>
           </div>
           <el-button type="primary" @click="changeOpt">changeOpt</el-button>
@@ -102,54 +129,49 @@
 </template>
 
 <script>
+import axios from 'axios'
 import MyCharts from './components/MyCharts.vue'
 import { options1, options2, options3, options4 } from './options'
 
 export default {
   name: 'App',
   components: {
-    MyCharts
+    MyCharts,
   },
   data() {
     return {
       options: options1,
       reflect_options: options3,
-      width: '500px',
+      width: '600px',
       imgSize1: "width:70px",
       imgSize2: "width:70px",
       imgSize3: "width:70px",
+      imgSize4: "width:70px",
       statistic: {
-        tot_count: '280,050,502',
-        desert_count: '16,479',
-        mal_count: '49,063'
+        tot_count: '2,182,089',
+        desert_count: '27/1104',
+        mal_count: '1/1104',
+        exp_count: '27/943'
       },
       searchValue: '',
-      select: 'main',
+      select: 'package_name',
       select_options: [
         {
-          value: 'main',
+          value: 'package_name',
           label: '包名'
-        }, {
-          value: 'title',
-          label: '篇名'
-        }, {
-          value: 'abstract',
-          label: '摘要'
-        }, {
-          value: 'field',
-          label: '领域'
         }, {
           value: 'author_name',
           label: '作者'
         }, {
           value: 'publisher',
           label: '来源'
-        }, {
-          value: 'doi',
-          label: 'DOI'
-        },
+        }, 
       ],
-      value: '',
+      value: 'package_name',
+      select: 'package_name',
+      selected: false,
+      results: ' ',
+      info: '',
       // results: [],
       // showPrefix: true,
     }
@@ -165,6 +187,9 @@ export default {
       this.imgSize3="height:80px;width:90px";
     },
     mouseOver4 () {
+      this.imgSize4="height:80px;width:90px";
+    },
+    mouseOver5 () {
       this.changeWidth();
     },
  
@@ -172,6 +197,7 @@ export default {
       this.imgSize1="width:70px";
       this.imgSize2="width:70px";
       this.imgSize3="width:70px";
+      this.imgSize4="width:70px";
     },
 
     mouseLeave2() {
@@ -179,13 +205,13 @@ export default {
     },
 
     changeWidth() {
-      if(this.width == '500px') {
+      if(this.width == '600px') {
         //console.log(1)
-        this.width = '700px'
+        this.width = '800px'
       } 
       else {
         //console.log(2)
-        this.width = '500px'
+        this.width = '600px'
       }
     },
     changeOpt() {
@@ -199,17 +225,71 @@ export default {
       }
     },
 
-    goSearch:function() {
-      // if (this.searchValue === '') {
-      //   this.$message.warning("请输入检索词！");
-      //   return;
-      // }
-      // let routeUrl = this.$router.resolve({
-      //   path: '/searchRes?' + this.select + "=" + this.searchValue,
-      // });
-      // window.open(routeUrl .href, "_self");
+    getInfo() {
+      axios.post('/cal_human').then(res => {
+        console.log(res);
+        if(res != null) {
+          this.statistic.exp_count = res.data;
+        }
+      })
+      axios.post('/cal_package').then(res => {
+        console.log(res);
+        if(res!= null) {
+          this.statistic.desert_count = res.data;
+        }
+      })
     },
-  }
+
+    goSearch:function() {
+      if(this.searchValue === '') {
+        this.info = 'error'
+        this.selected = true;
+        this.results = '请输入包名'
+      }
+      else {
+        console.log(this.searchValue)
+        axios.post('/check_package', 
+          { package_id: this.searchValue }
+        ).then(res=>{
+          console.log(res)
+          this.selected = true;
+          if(res.data === 'No maintainer') {
+            this.info = 'warning';
+            this.results = '搜索结果：当前包没有维护者'
+          }
+          else if(res.data == 1) {
+            this.info = 'error'
+            this.results = '搜索结果：当前包不可信'
+          }
+          else {
+            this.info ='success'
+            this.results = '搜索结果：当前包可信'
+          }
+        })
+      }
+    },
+
+    close_result() {
+      this.selected = false;
+    }
+  },
+  created() {
+    this.getInfo();
+  },
+  mounted() {
+    this.options = options1;
+    this.reflect_options = options3;
+  },
+  watch: {
+    // searchValue(newVal, oldVal) {
+    //   if(newVal !== '' && newVal !== oldVal)
+    //     this.getPrefix();
+    // },
+    // select(newVal, oldVal) {
+    //   if (newVal !== '' && newVal !== oldVal)
+    //     this.getPrefix();
+    // },
+  },
 }
 </script>
 
