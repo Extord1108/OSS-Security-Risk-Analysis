@@ -17,8 +17,8 @@ def readJson():
 # 保存数据到数据库
 def saveData(data):
     # 打开数据库连接，参数1：主机名或IP；参数2：用户名；参数3：密码；参数4：数据库名
-    db = pymysql.connect(host='localhost', user='root',
-                         password='root', database='ossd')
+    db = pymysql.connect(host='url', user='user',
+                         password='password', database='database')
 
     # 使用cursor()创建一个cursor对象
     cursor = db.cursor()

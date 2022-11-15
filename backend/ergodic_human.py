@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker
 from model import *
 
 # 数据库连接url
-DB_CONNECT_STRING = 'mysql+pymysql://mycloud:mycloud@43.138.47.53/ossd'
+DB_CONNECT_STRING = 'mysql+pymysql://mycloud:mycloud@url/database'
 # 创建引擎
 engine = create_engine(DB_CONNECT_STRING, echo=True)
 # 自动映射
@@ -29,16 +29,18 @@ def cal_human():
     all_num = session.query(func.count(Human.name)).first()
     # expired_num = session.query(func.count(Human.expired == 1)).first()
     expired_human = session.query(Human).filter_by(expired=1).all()
-    expired_num=0
+    expired_num = 0
     for i in expired_human:
         expired_num = expired_num+1
     print("-------------------------------------")
-    print(str(expired_num) + "/" + str(all_num)[str(all_num).index('(') + 1:str(all_num).index(',')])
+    print(str(expired_num) + "/" + str(all_num)
+          [str(all_num).index('(') + 1:str(all_num).index(',')])
 
 
 def cal_package(package_id):
     package_expired = 0
-    package_humans = session.query(Maintainer).filter_by(package_id=package_id).all()
+    package_humans = session.query(Maintainer).filter_by(
+        package_id=package_id).all()
     # print("-------------------------------------")
     for human in package_humans:
         human_neo = session.query(Human).filter_by(id=human.human_id).first()
@@ -52,8 +54,8 @@ if __name__ == '__main__':
     # cal_human()
     # cal_package('--ignore-workspace-root-check')
     expired_package_num = 0
-    all_package=session.query(Package).all()
+    all_package = session.query(Package).all()
     for package in all_package:
-        expired_package_num+=cal_package(package.id)
+        expired_package_num += cal_package(package.id)
 
     print(expired_package_num)

@@ -12,7 +12,7 @@ from model import *
 app = Flask(__name__)
 
 # 数据库连接url
-DB_CONNECT_STRING = 'mysql+pymysql://mycloud:mycloud@43.138.47.53/ossd'
+DB_CONNECT_STRING = 'mysql+pymysql://mycloud:mycloud@url/database'
 # 创建引擎
 engine = create_engine(DB_CONNECT_STRING, echo=True)
 # 自动映射
@@ -27,7 +27,8 @@ expired_human_scal = "27/1104"
 
 def check_package(package_id):
     package_expired = 0
-    package_humans = session.query(Maintainer).filter_by(package_id=package_id).all()
+    package_humans = session.query(Maintainer).filter_by(
+        package_id=package_id).all()
     # print("-------------------------------------")
     for human in package_humans:
         human_neo = session.query(Human).filter_by(id=human.human_id).first()
@@ -42,7 +43,8 @@ def check_package_neo():
     package_id = data_json.get('package_id')
     package_expired = 0
     human_num = 0
-    package_maintainers = session.query(Maintainer).filter_by(package_id=package_id).all()
+    package_maintainers = session.query(
+        Maintainer).filter_by(package_id=package_id).all()
 
     for maitainer in package_maintainers:
         human = session.query(Human).filter_by(id=maitainer.human_id).first()

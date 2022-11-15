@@ -10,7 +10,7 @@ import qs from "qs";
 Vue.config.productionTip = false;
 Vue.use(ElementUI, { size: "small" });
 
-axios.defaults.baseURL = "http://43.138.47.53:5000";
+axios.defaults.baseURL = "url";
 //axios.defaults.baseURL="/api";
 Vue.prototype.$axios = axios;
 
