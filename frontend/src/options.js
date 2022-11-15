@@ -1,22 +1,22 @@
-let test_msg = '风险分析'
-export default {
-    title: {
-        text: test_msg,
-    },
-    tooltip: {},
-    legend: {
-        data: ['数量']
-    },
-    xAxis: {
-        data: ["漏洞1", "漏洞2", "漏洞3", "漏洞4", "漏洞5", "漏洞6"]
-    },
-    yAxis: {},
-    series: [{
-        name: '数量',
-        type: 'bar',
-        data: [5, 20, 36, 10, 10, 20]
-    }]
-};
+let test_msg = '分析'
+// export default {
+//     title: {
+//         text: test_msg,
+//     },
+//     tooltip: {},
+//     legend: {
+//         data: ['数量']
+//     },
+//     xAxis: {
+//         data: ["漏洞1", "漏洞2", "漏洞3", "漏洞4", "漏洞5", "漏洞6"]
+//     },
+//     yAxis: {},
+//     series: [{
+//         name: '数量',
+//         type: 'bar',
+//         data: [5, 20, 36, 10, 10, 20]
+//     }]
+// };
 
 export const options1 = {
     title: {
@@ -27,13 +27,13 @@ export const options1 = {
         data: ['数量']
     },
     xAxis: {
-        data: ["漏洞1", "漏洞2", "漏洞3", "漏洞4", "漏洞5", "漏洞6"]
+        data: ["不可信包", "无维护者(过期)包", "恶意包"]
     },
     yAxis: {},
     series: [{
         name: '数量',
         type: 'bar',
-        data: [5, 20, 36, 10, 10, 20]
+        data: [107, 98, 17]
     }]
 };
 
@@ -67,11 +67,11 @@ export const options3 = {
     legend: {
         orient: 'vertical',
         x: 'left',
-        data: ['漏洞1', '漏洞2', '漏洞3', '漏洞4', '漏洞5']
+        data: ['可信包', '不可信包', '过期包', '恶意包']
     },
     series: [{
         type: 'pie',
-        radius: ['50%', '70%'],
+        radius: ['45%', '70%'],
         avoidLabelOverlap: false,
         label: {
             show: false,
@@ -88,12 +88,10 @@ export const options3 = {
             }
         },
         data: [
-            { value: 5, name: '漏洞1' },
-            { value: 20, name: '漏洞2' },
-            { value: 36, name: '漏洞3' },
-            { value: 10, name: '漏洞4' },
-            { value: 10, name: '漏洞5' },
-            { value: 20, name: '漏洞6' }
+            { value: 97, name: '不可信包' },
+            { value: 600, name: '可信包' },
+            { value: 98, name: '过期包' },
+            { value: 7, name: '恶意包' },
         ]
     }]
 };
