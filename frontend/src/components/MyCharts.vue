@@ -74,14 +74,14 @@ export default {
   },
 
   mounted() {
-    setTimeout(() => {
+    // setTimeout(() => {
         // 准备实例
         if(echarts.getInstanceByDom(document.getElementById(this.uuid)) == null) { 
           this.myChart = echarts.init(document.getElementById(this.uuid));
           // 应用配置项
           this.myChart.setOption(this.options);
         }
-    }, 400);
+    //}, 500);
   }
 }
 </script>
