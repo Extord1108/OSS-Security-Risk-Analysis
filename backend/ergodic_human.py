@@ -15,14 +15,6 @@ Base.prepare(engine, reflect=True)
 tables = Base.classes.keys()
 
 print("-------------------------------------")
-# print(tables)
-# 获取指定t_movies表(确保表名没有问题) --> movie实体类
-# human = Base.classes.human
-# 查看映射信息
-# print(human.__dict__)
-# # 获取所有字段或属性
-# keys = human.__table__.columns.keys()
-# print(keys)
 
 
 Base1 = declarative_base(engine)

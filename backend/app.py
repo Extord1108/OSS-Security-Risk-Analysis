@@ -1,40 +1,44 @@
-import json
-import re
-
-from flask import Flask
 import requests
 from flask import request
 from flask import Flask, render_template
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy import create_engine, func
+from sqlalchemy.orm import sessionmaker
+from model import *
 
 app = Flask(__name__)
 
+# 数据库连接url
+DB_CONNECT_STRING = 'mysql+pymysql://mycloud:mycloud@43.138.47.53/ossd'
+# 创建引擎
+engine = create_engine(DB_CONNECT_STRING, echo=True)
+# 自动映射
+Base = automap_base()
+Base.prepare(engine, reflect=True)
+# 获取所有表的映射类
+tables = Base.classes.keys()
+Base1 = declarative_base(engine)
+session = sessionmaker(engine)()
+expired_human_scal="27/1104"
 
-@app.route('/hello')
+def check_package(package_id):
+    package_expired = 0
+    package_humans = session.query(Maintainer).filter_by(package_id=package_id).all()
+    # print("-------------------------------------")
+    for human in package_humans:
+        human_neo = session.query(Human).filter_by(id=human.human_id).first()
+        if human_neo.expired == 1:
+            package_expired = 1
+    return package_expired
+
+
+@app.route('/hello', methods=['GET', 'POST'])
 def hello_world():  # put application's code here
     return 'Hello World!'
 
 
-
-
-
-@app.route('/find', methods=['GET', 'POST'])
-def Find_com():
-    # find_content = request.args.get('find_content')
-    find_content = "gmail.com"
-    urls = f"https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck={find_content}&redirected=true&tmskey=1dom_03_intlgtld"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36",
-    }
-    resp = requests.get(urls, headers=headers)
-
-    return str(resp.text)
-
-
-@app.route('/crawl')
+@app.route('/crawl', methods=['GET', 'POST'])
 def crawl():
     resp = requests.get('https://replicate.npmjs.com/_all_docs')
     page_content = resp.text
@@ -43,6 +47,37 @@ def crawl():
     file_object1.write(page_content)
     file_object1.close()
 
+
+@app.route('/cal_human', methods=['GET', 'POST'])
+def cal_human():
+    # 计算维护者的过期比例
+    all_human = session.query(Human).all()
+    # for human in all_human:
+    #     print(human.email)
+    all_num = session.query(func.count(Human.name)).first()
+    # expired_num = session.query(func.count(Human.expired == 1)).first()
+    expired_human = session.query(Human).filter_by(expired=1).all()
+    expired_num = 0
+    for i in expired_human:
+        expired_num = expired_num + 1
+    # print("-------------------------------------")
+    return (str(expired_num) + "/" + str(all_num)[str(all_num).index('(') + 1:str(all_num).index(',')])
+
+
+@app.route('/cal_package', methods=['GET', 'POST'])
+def cal_package():
+    expired_package_num = 0
+    all_package = session.query(Package).all()
+    all_num = session.query(func.count(Package.name)).first()
+    for package in all_package:
+        expired_package_num += check_package(package.id)
+
+    return str(expired_package_num) + "/" + str(all_num)[str(all_num).index('(') + 1:str(all_num).index(',')]
+
+@app.route('/cal_package_neo', methods=['GET', 'POST'])
+def cal_package_neo():
+
+    return expired_human_scal
 
 if __name__ == '__main__':
     app.run()
