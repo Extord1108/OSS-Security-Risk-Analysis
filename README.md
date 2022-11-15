@@ -24,4 +24,59 @@
 
 #### 后端
 
-​	后端部分使用
+- 整体框架：Flask
+- 数据库：Mysql
+- 使用语言：python 3.10
+- 版本管理：git
+- 使用python模块（congda虚拟环境下使用pip即可安装）：
+  - requests：2.28.1
+  - flask：2.2.2
+  - flask-sqlacodegen：1.1.8
+  - flask-sqlalchemy：3.0.2
+  - gevent：21.8.0
+  - pymysql：1.0.2
+  - sqlalchemy：1.4.44
+
+### 前端
+
+
+
+### 使用
+
+#### Windows
+
+​	在windows环境下，在创建，配置并激活虚拟环境之后即可进行使用
+
+运行backend目录下的wsgi.py即可运行项目
+
+```
+python wsgi.py
+```
+
+![image-20221115205328017](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20221115205328017.png)
+
+项目的运行端口和域名可以在wsgi.py中进行配置
+
+![image-20221115205502359](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20221115205502359.png)
+
+
+
+#### Linux
+
+​	在Linux环境下，在创建配置并且集火虚拟环境之后，即可进行使用
+
+运行backend目录下的wsgi.py即可运行项目
+
+![image-20221115205737063](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20221115205737063.png)
+
+
+
+### 友情链接
+
+关于本项目的创建团队，我们在这里给出github的链接，方便各位开源朋友进行联系
+
+https://github.com/shilogic0929
+
+https://github.com/BX511021
+
+https://github.com/Re-Li-fe
