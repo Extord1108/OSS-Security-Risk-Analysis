@@ -32,6 +32,18 @@ def check_package(package_id):
             package_expired = 1
     return package_expired
 
+@app.route('/check_package', methods=['GET', 'POST'])
+def check_package_neo(package_id):
+    package_expired = 0
+    package_humans = session.query(Maintainer).filter_by(package_id=package_id).all()
+    # print("-------------------------------------")
+    for human in package_humans:
+        human_neo = session.query(Human).filter_by(id=human.human_id).first()
+        if human_neo.expired == 1:
+            package_expired = 1
+
+    return str(package_expired)
+
 
 @app.route('/hello', methods=['GET', 'POST'])
 def hello_world():  # put application's code here
@@ -76,8 +88,8 @@ def cal_package():
 
 @app.route('/cal_package_neo', methods=['GET', 'POST'])
 def cal_package_neo():
-
     return expired_human_scal
+
 
 if __name__ == '__main__':
     app.run()
