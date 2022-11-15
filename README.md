@@ -10,6 +10,8 @@
 
 [开源供应链安全风险分析](http://ossd.retools.space/)
 
+[项目设计文档](https://blog.csdn.net/weixin_47231648/article/details/127876587)
+
 
 ## 准备
 
