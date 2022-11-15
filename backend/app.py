@@ -1,3 +1,5 @@
+import json
+
 import requests
 from flask import request
 from flask import Flask, render_template
@@ -33,16 +35,24 @@ def check_package(package_id):
     return package_expired
 
 @app.route('/check_package', methods=['GET', 'POST'])
-def check_package_neo(package_id):
+def check_package_neo():
+    data_json = json.loads(request.data)
+    package_id = data_json.get('package_id')
     package_expired = 0
     package_humans = session.query(Maintainer).filter_by(package_id=package_id).all()
+    if package_humans.count(Human.id) == 0:
+        return "No package"
     # print("-------------------------------------")
     for human in package_humans:
         human_neo = session.query(Human).filter_by(id=human.human_id).first()
         if human_neo.expired == 1:
             package_expired = 1
-
     return str(package_expired)
+@app.route('/text_faram', methods=['GET', 'POST'])
+def text_faram():
+    data_json = json.loads(request.data)
+    id = data_json.get('id')
+    return id+" Well Done"
 
 
 @app.route('/hello', methods=['GET', 'POST'])
