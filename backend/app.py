@@ -22,7 +22,8 @@ Base.prepare(engine, reflect=True)
 tables = Base.classes.keys()
 Base1 = declarative_base(engine)
 session = sessionmaker(engine)()
-expired_human_scal="27/1104"
+expired_human_scal = "27/1104"
+
 
 def check_package(package_id):
     package_expired = 0
@@ -34,25 +35,30 @@ def check_package(package_id):
             package_expired = 1
     return package_expired
 
-@app.route('/check_package', methods=['GET', 'POST'])
+
+@app.route('/check_package', methods=['POST'])
 def check_package_neo():
     data_json = json.loads(request.data)
     package_id = data_json.get('package_id')
     package_expired = 0
-    package_humans = session.query(Maintainer).filter_by(package_id=package_id).all()
-    if package_humans.count(Human.id) == 0:
-        return "No package"
-    # print("-------------------------------------")
-    for human in package_humans:
-        human_neo = session.query(Human).filter_by(id=human.human_id).first()
-        if human_neo.expired == 1:
+    human_num = 0
+    package_maintainers = session.query(Maintainer).filter_by(package_id=package_id).all()
+
+    for maitainer in package_maintainers:
+        human = session.query(Human).filter_by(id=maitainer.human_id).first()
+        human_num += 1
+        if human.expired == 1:
             package_expired = 1
+    if human_num == 0:
+        return "No maintainer"
     return str(package_expired)
+
+
 @app.route('/text_faram', methods=['GET', 'POST'])
 def text_faram():
     data_json = json.loads(request.data)
     id = data_json.get('id')
-    return id+" Well Done"
+    return id + " Well Done"
 
 
 @app.route('/hello', methods=['GET', 'POST'])
@@ -95,6 +101,7 @@ def cal_package():
         expired_package_num += check_package(package.id)
 
     return str(expired_package_num) + "/" + str(all_num)[str(all_num).index('(') + 1:str(all_num).index(',')]
+
 
 @app.route('/cal_package_neo', methods=['GET', 'POST'])
 def cal_package_neo():
