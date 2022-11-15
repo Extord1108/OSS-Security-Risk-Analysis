@@ -1,4 +1,3 @@
-from datetime import datetime
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy import create_engine, func
@@ -48,16 +47,21 @@ def cal_human():
 def cal_package(package_id):
     package_expired = 0
     package_humans = session.query(Maintainer).filter_by(package_id=package_id).all()
-    print("-------------------------------------")
+    # print("-------------------------------------")
     for human in package_humans:
         human_neo = session.query(Human).filter_by(id=human.human_id).first()
         if human_neo.expired == 1:
             package_expired = 1
 
-    if package_expired == 1:
-        print("Not believable")
+    return package_expired
 
 
 if __name__ == '__main__':
-    cal_human()
+    # cal_human()
     # cal_package('--ignore-workspace-root-check')
+    expired_package_num = 0
+    all_package=session.query(Package).all()
+    for package in all_package:
+        expired_package_num+=cal_package(package.id)
+
+    print(expired_package_num)

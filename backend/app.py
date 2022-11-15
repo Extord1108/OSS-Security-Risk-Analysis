@@ -18,19 +18,7 @@ def hello_world():  # put application's code here
     return 'Hello World!'
 
 
-@app.route('/search')
-def search_content():
-    count = 0
-    file_object2 = open("templates/content.txt", 'r')
-    # {"id": "--hoodmane-test-pyodide", "key": "--hoodmane-test-pyodide","value": {"rev": "2-ca1f76c11cfe8727f8768fe43e76b341"}},
-    obj1 = re.compile('{"id":"(?P<id>.*?)","key":"(?P<key>.*?)","value":(?P<value>.*?)}', re.S)
-    page_content = file_object2.read()
-    answer = obj1.finditer(page_content)
-    for i in answer:
-        count = count + 1
 
-    print(count)
-    return str(count)
 
 
 @app.route('/find', methods=['GET', 'POST'])
