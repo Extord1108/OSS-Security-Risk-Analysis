@@ -117,12 +117,12 @@
         <el-card class="card">
           <el-col :span="15">
             <div @mouseenter="mouseOver5" @mouseleave="mouseLeave2">
-              <MyCharts :options="options" :width="width"></MyCharts>
+              <MyCharts id="chart1" :options="options" :width="width"></MyCharts>
             </div>
             <!--<el-button type="primary" @click="changeOpt">changeOpt</el-button>-->
           </el-col>
           <el-col :span="9">
-            <MyCharts :options="reflect_options"></MyCharts>
+            <MyCharts id="chart2" :options="reflect_options"></MyCharts>
           </el-col>
         </el-card>
       </div>
