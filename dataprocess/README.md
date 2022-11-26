@@ -2,9 +2,9 @@
 
 数据相关
 
-### flume
+### metadata
+npm包元数据的示例文件
 
-```
-flume-ng agent -n a1 -c conf -f conf/example.conf
-```
+### spider
+爬虫脚本
 

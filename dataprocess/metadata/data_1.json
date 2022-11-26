@@ -1,0 +1,69 @@
+{
+    "total_rows": 2188382,
+    "offset": 0,
+    "rows": [
+        {
+            "id": "-",
+            "key": "-",
+            "value": {
+                "rev": "5-92e28c1ea7f24d165faa202aabd92669"
+            }
+        },
+        {
+            "id": "---iop-npm-repo-name---",
+            "key": "---iop-npm-repo-name---",
+            "value": {
+                "rev": "1-5f09da622d66eb88edeb1f13e2f8dbb0"
+            }
+        },
+        {
+            "id": "--123hoodmane-pyodide",
+            "key": "--123hoodmane-pyodide",
+            "value": {
+                "rev": "2-0c196da0bb2d2fc3bbce128d6dfa6dfc"
+            }
+        },
+        {
+            "id": "--can-you-install",
+            "key": "--can-you-install",
+            "value": {
+                "rev": "5-e461cdc0907fb67cebb92f0fcefd6c24"
+            }
+        },
+        {
+            "id": "--file--1",
+            "key": "--file--1",
+            "value": {
+                "rev": "3-79ab6e5a0e40475c9782833ca0f97a42"
+            }
+        },
+        {
+            "id": "--fix-lockfile",
+            "key": "--fix-lockfile",
+            "value": {
+                "rev": "2-5b4ec2a7e408908c6b05b97f95edec59"
+            }
+        },
+        {
+            "id": "--frozen-lockfile",
+            "key": "--frozen-lockfile",
+            "value": {
+                "rev": "2-6acddff1faef0f259bfc684f1f66c4f6"
+            }
+        },
+        {
+            "id": "--hiljson",
+            "key": "--hiljson",
+            "value": {
+                "rev": "15-914bd20311044db6c711834afff1de16"
+            }
+        },
+        {
+            "id": "--hoodmane-test-pyodide",
+            "key": "--hoodmane-test-pyodide",
+            "value": {
+                "rev": "2-ca1f76c11cfe8727f8768fe43e76b341"
+            }
+        }
+    ]
+}
