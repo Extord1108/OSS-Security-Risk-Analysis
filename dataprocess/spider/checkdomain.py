@@ -1,3 +1,4 @@
+# coding=utf-8 #
 import pymysql
 import requests
 from spider import isDomainAvaliable
@@ -9,7 +10,7 @@ def checkdomain():
     domainDict = {}
 
     # 打开数据库连接，参数1：主机名或IP；参数2：用户名；参数3：密码；参数4：数据库名
-    db = pymysql.connect(host='43.138.47.53', user='mycloud',
+    db = pymysql.connect(host='localhost', user='mycloud',
                          password='mycloud', database='ossd')
     cursor = db.cursor()
     # use sql select email from human where email like '%@%';

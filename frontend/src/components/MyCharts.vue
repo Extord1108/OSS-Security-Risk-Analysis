@@ -1,5 +1,5 @@
 <template>
-  <div :id="uuid" :style="style"></div>
+  <div :id="id" :style="style"></div>
 </template>
 
 <script>
@@ -25,6 +25,10 @@ export default {
     options: {
       type: Object,
       default: null
+    },
+    id: {
+      type: String,
+      default: null
     }
   },
 
@@ -37,23 +41,23 @@ export default {
 
   watch: {
     width() {
-      if(this.myChart != null) {
+      if (this.myChart != null) {
         setTimeout(() => {
           this.myChart.resize({
-              animation: {
-                duration: 400
-              }
+            animation: {
+              duration: 400
             }
+          }
           )
         }, 0);
       }
     },
     options() {
-      if(this.myChart != null) {
+      if (this.myChart != null) {
         this.myChart.setOption(
           this.options, {
-            notMerge: true
-          }
+          notMerge: true
+        }
         )
       }
     }
@@ -74,14 +78,14 @@ export default {
   },
 
   mounted() {
-    // setTimeout(() => {
-        // 准备实例
-        if(echarts.getInstanceByDom(document.getElementById(this.uuid)) == null) { 
-          this.myChart = echarts.init(document.getElementById(this.uuid));
-          // 应用配置项
-          this.myChart.setOption(this.options);
-        }
-    //}, 500);
+    setTimeout(() => {
+      // 准备实例
+      if (echarts.getInstanceByDom(document.getElementById(this.id)) == null) {
+        this.myChart = echarts.init(document.getElementById(this.id));
+        // 应用配置项
+        this.myChart.setOption(this.options);
+      }
+    }, 1000);
   }
 }
 </script>
