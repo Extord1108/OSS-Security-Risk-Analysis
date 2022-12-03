@@ -101,7 +101,7 @@ def searchHuman():  # 查询维护者
 
     return dic
 
-@app.route('/cal_res', methods=['POST'])
+@app.route('/cal_res', methods=['GET','POST'])
 def cal_res():  # 统计仓库
     return ({'no_res': 28186, 'have_res': 28649, 'all_num': 56835})
 
