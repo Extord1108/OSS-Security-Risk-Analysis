@@ -36,6 +36,49 @@ def cal_lisence():  # 统计许可证
     return ({'no_num': 614, 'easy_num': 25558, 'strict_num': 30663, 'all_num': 56835})
 
 
+@app.route('/searchPackage', methods=['POST'])
+def searchPackage():  # 查询包
+    package_id = request.form.get('package_id', '')
+    dic = {}#返回连串信息
+
+    package = session.query(Package).filter_by(id=package_id).first()
+    if package is None:
+        return 'No result'
+
+    dic.update({'package_expired':0})
+    package_humans = session.query(Maintainer).filter_by(package_id=package_id).all()#检查包是否可信
+    for human in package_humans:
+        human_neo = session.query(Human).filter_by(id=human.human_id).first()
+        if human_neo.expired == 1:
+            dic.update({'package_expired':1})
+
+    #检查包是否有安装脚本
+    dic.update({'package_script':package.has_install_script})
+
+    #返回多长时间没维护
+    last_time = package.lastest_time
+    # 2022-03-18T21:25:23.427Z
+    last_time1 = last_time[0:int(last_time.rfind('T'))]
+    now_time_str = datetime.datetime.now().strftime("%Y-%m-%d")
+    now_time = datetime.datetime.strptime(now_time_str, "%Y-%m-%d")
+    strTime = datetime.datetime.strptime(last_time1, "%Y-%m-%d")
+    dif_time = (now_time - strTime).days
+    dic.update({'dif_time':dif_time})
+
+    #是否有源码仓库
+    if package.repository is None:
+        dic.update({'repository':0})
+    else:
+        dic.update({'repository': 1})
+
+    #许可证
+    dic.update({'license':package.license})
+
+    #名称与最新版本
+    dic.update({'name':package.name})
+    dic.update({'last_version':package.version})
+    return dic
+
 
 if __name__ == '__main__':
     app.run()
