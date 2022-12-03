@@ -1,3 +1,4 @@
+import difflib
 
 from intsall_cal import *
 
@@ -78,8 +79,15 @@ def searchPackage():  # 查询包
     dic.update({'name':package.name})
     dic.update({'last_version':package.version})
 
-    print("-------------------------------------")
-    print("Look"+package.repository+"Here")
+    # 相似恶意包
+    ret_package = []
+    malicious_package = session.query(
+        Package).filter_by(is_malicious='1').all()
+    for package in malicious_package:
+        if (difflib.SequenceMatcher(None, package_id, package.id).quick_ratio() > 0.7 and not package_id == package.id):
+            ret_package.append(package.id)
+    dic.update({'malicious_package': ret_package})
+
     return dic
 
 @app.route('/searchHuman', methods=['POST'])
@@ -98,7 +106,6 @@ def searchHuman():  # 查询维护者
     dic.update({'name':human.name})
     dic.update({'email':human.email})
     dic.update({'url':human.url})
-
     return dic
 
 @app.route('/cal_res', methods=['GET','POST'])
