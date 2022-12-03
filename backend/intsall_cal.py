@@ -26,14 +26,6 @@ print("-------------------------------------")
 Base1 = declarative_base(engine)
 session = sessionmaker(engine)()
 
-glob_all_package_num=0
-glob_script_num=0
-glob_over_two=0
-glob_one_to_two=0
-glob_under_one=0
-glob_no_num=0
-glob_easy_num=0
-glob_strict_num=0
 
 def cal_script():  # 统计脚本包的数量鱼比例
     all_package = session.query(Package).all()

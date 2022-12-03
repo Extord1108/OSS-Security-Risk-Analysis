@@ -34,8 +34,8 @@ def cal_human():# 计算维护者的数量
     for i in expired_human:
         expired_human_num = expired_human_num+1
     print("-------------------------------------")
-    print({"all_human_num":all_human_num,"expired_num":expired_human_num})
-    return ({"all_human_num":all_human_num,"expired_num":expired_human_num})
+    print({"all_human_num":all_human_num[0],"expired_num":expired_human_num})
+    return ({"all_human_num":all_human_num[0],"expired_num":expired_human_num})
 
 
 def check_package(package_id):
@@ -56,11 +56,12 @@ def cal_package():#计算过期包的比例
     for package in all_package:
         expired_package_num += check_package(package.id)
 
-    print({"all_package_num":all_package_num,"expired_package_num":expired_package_num})
-    return ({"all_package_num":all_package_num,"expired_package_num":expired_package_num})
+    print({"all_package_num":all_package_num[0],"expired_package_num":expired_package_num})
+    return ({"all_package_num":all_package_num[0],"expired_package_num":expired_package_num})
 
 
 if __name__ == '__main__':
-    cal_human()
+    # cal_human()
     # cal_package('--ignore-workspace-root-check')
+    cal_package()
 
