@@ -67,9 +67,9 @@ def searchPackage():  # 查询包
 
     #是否有源码仓库
     if package.repository is '':
-        dic.update({'repository':0})
+        dic.update({'repository':'null'})
     else:
-        dic.update({'repository': 1})
+        dic.update({'repository': package.repository})
 
     #许可证
     dic.update({'license':package.license})
