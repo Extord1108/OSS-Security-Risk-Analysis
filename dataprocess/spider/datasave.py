@@ -18,8 +18,8 @@ def readJson(path):
 # 保存数据到数据库
 def saveData(data, filename):
     # 打开数据库连接，参数1：主机名或IP；参数2：用户名；参数3：密码；参数4：数据库名
-    db = pymysql.connect(host='localhost', user='mycloud',
-                         password='mycloud', database='ossd')
+    db = pymysql.connect(host='localhost', user='root',
+                         password='root', database='ossd')
 
     # 使用cursor()创建一个cursor对象
     cursor = db.cursor()
@@ -264,11 +264,11 @@ def saveData(data, filename):
 if __name__ == '__main__':
     datalist = os.listdir("./metadata")
     datalist.sort()
-    print(datalist)
-    for datapath in datalist:
-        data = readJson(os.path.join("./metadata", datapath))
-        saveData(data, datapath)
-    # data = readJson(os.path.join("./metadata", datalist[200]))
+    # print(datalist)
+    # for datapath in datalist:
+    #     data = readJson(os.path.join("./metadata", datapath))
+    #     saveData(data, datapath)
+    data = readJson(os.path.join("./metadata", datalist[200]))
     # data = [{"id": "ecce-preact", "key": "ecce-preact",
     #          "value": {"rev": "11-5de12e74a0dc0d1af56e444b08008996"}}]
-    # saveData(data)
+    saveData(data, datalist[200])

@@ -1,7 +1,6 @@
 import requests
 import time
 import json
-import re
 from http.client import IncompleteRead
 
 header = {
@@ -18,8 +17,6 @@ godaddy_secret = 'Ka5BuCzDfN3kCu5mAPLfDg'
 
 
 # 获取包的元数据
-
-
 def getMetadata():
     header = {
         "Accept": "application/json, text/javascript, */*; q=0.01",
@@ -64,16 +61,11 @@ def getDoc(key):
                            key, headers=header, timeout=50)
         doc.encoding = doc.apparent_encoding
         txt = doc.text.replace('¥', '\\')
-        # with open('doc_1.json', 'w', encoding='utf-8') as f:
-        #     f.write(txt)
-        jsondata = json.loads(txt)
-        if jsondata == None:
-            raise Exception("json format error")
-        return jsondata
-    except Exception as e:
-        with open('log.txt', 'a') as f:
-            f.write(str(e) + "  "+key + '\n')
-        print('error: %s' % key)
+        with open('doc_1.json', 'w', encoding='utf-8') as f:
+            f.write(txt)
+        return json.loads(txt)
+    except IncompleteRead:
+        print('read error: %s' % key, time.strftime())
         return {'error': key, 'reason': 'read error'}
 
 # 检查domain是否过期
