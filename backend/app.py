@@ -66,7 +66,7 @@ def searchPackage():  # 查询包
     dic.update({'dif_time':dif_time})
 
     #是否有源码仓库
-    if package.repository is None:
+    if package.repository is '':
         dic.update({'repository':0})
     else:
         dic.update({'repository': 1})
@@ -77,6 +77,9 @@ def searchPackage():  # 查询包
     #名称与最新版本
     dic.update({'name':package.name})
     dic.update({'last_version':package.version})
+
+    print("-------------------------------------")
+    print("Look"+package.repository+"Here")
     return dic
 
 @app.route('/searchHuman', methods=['POST'])
@@ -97,6 +100,10 @@ def searchHuman():  # 查询维护者
     dic.update({'url':human.url})
 
     return dic
+
+@app.route('/cal_res', methods=['POST'])
+def cal_res():  # 统计仓库
+    return ({'no_res': 28186, 'have_res': 28649, 'all_num': 56835})
 
 if __name__ == '__main__':
     app.run()

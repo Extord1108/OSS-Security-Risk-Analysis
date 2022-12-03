@@ -28,4 +28,22 @@ session = sessionmaker(engine)()
 
 
 def cal_res():
-    return "nice"
+    all_package = session.query(Package).all()
+    # for human in all_human:
+    #     print(human.email)
+    all_num = session.query(func.count(Package.id)).first()[0]  # 包总数
+    # expired_num = session.query(func.count(Human.expired == 1)).first()
+    no_res = 0
+    have_res = 0
+    for i in all_package:
+        if i.repository is '':
+            no_res+=1
+        else:
+            have_res+=1
+
+    print ({"no_res": no_res,"have_res":have_res, "all_num": all_num})
+    return ({"no_res": no_res,"have_res":have_res, "all_num": all_num})
+
+
+if __name__ == '__main__':
+    cal_res()
