@@ -79,6 +79,24 @@ def searchPackage():  # 查询包
     dic.update({'last_version':package.version})
     return dic
 
+@app.route('/searchHuman', methods=['POST'])
+def searchHuman():  # 查询维护者
+    name = request.form.get('name', '')
+    dic = {}  # 返回连串信息
+
+    human = session.query(Human).filter_by(name=name).first()
+    if human is None:
+        return 'No result'
+
+    #查询域名是否过期
+    dic.update({'human_expired':human.expired})
+
+    #基本信息
+    dic.update({'name':human.name})
+    dic.update({'email':human.email})
+    dic.update({'url':human.url})
+
+    return dic
 
 if __name__ == '__main__':
     app.run()
