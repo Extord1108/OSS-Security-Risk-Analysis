@@ -1,33 +1,16 @@
-let test_msg = "域名风险分析";
-// export default {
-//     title: {
-//         text: test_msg,
-//     },
-//     tooltip: {},
-//     legend: {
-//         data: ['数量']
-//     },
-//     xAxis: {
-//         data: ["漏洞1", "漏洞2", "漏洞3", "漏洞4", "漏洞5", "漏洞6"]
-//     },
-//     yAxis: {},
-//     series: [{
-//         name: '数量',
-//         type: 'bar',
-//         data: [5, 20, 36, 10, 10, 20]
-//     }]
-// };
+let test_msg1 = "包活跃度分析";
+let test_msg2 = "许可证分析"
 
 export const options1 = {
   title: {
-    text: test_msg,
+    text: test_msg1,
   },
   tooltip: {},
   legend: {
     data: ["数量"],
   },
   xAxis: {
-    data: ["可信维护者", "风险维护者"],
+    data: ["活跃", "一般", "不活跃"],
   },
   yAxis: {},
   series: [
@@ -35,8 +18,9 @@ export const options1 = {
       name: "数量",
       type: "bar",
       data: [
-        { value: 916, name: "可信维护者" },
-        { value: 27, name: "风险维护者" },
+        { value: 24105, name: "活跃" },
+        { value: 11822, name: "一般" },
+        { value: 20908, name: "不活跃"}
       ],
     },
   ],
@@ -50,7 +34,7 @@ export const options2 = {
     top: "center",
   },
   title: {
-    text: test_msg,
+    text: test_msg1,
   },
   dataset: {
     source: [
@@ -68,9 +52,10 @@ export const options2 = {
 
 export const options3 = {
   legend: {
-    orient: "vertical",
-    x: "left",
-    data: ["可信包", "风险包"],
+    data: ["无许可证", "宽松许可证", "严格许可证"],
+  },
+  title: {
+    text: test_msg2,
   },
   series: [
     {
@@ -92,8 +77,9 @@ export const options3 = {
         },
       },
       data: [
-        { value: 1077, name: "可信包" },
-        { value: 27, name: "风险包" },
+        { value: 614, name: "无许可证" },
+        { value: 25558, name: "宽松许可证" },
+        { value: 30663, name: "严格许可证"}
       ],
     },
   ],

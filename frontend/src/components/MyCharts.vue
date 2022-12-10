@@ -41,14 +41,13 @@ export default {
 
   watch: {
     width() {
-      if (this.myChart != null) {
+      if(this.myChart != null) {
         setTimeout(() => {
           this.myChart.resize({
             animation: {
               duration: 400
             }
-          }
-          )
+          })
         }, 0);
       }
     },
@@ -56,8 +55,8 @@ export default {
       if (this.myChart != null) {
         this.myChart.setOption(
           this.options, {
-          notMerge: true
-        }
+            notMerge: true
+          }
         )
       }
     }

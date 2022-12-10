@@ -16,14 +16,6 @@
                 </el-select>
                 <el-button slot="append" icon="el-icon-search" @click="goSearch"></el-button>
               </el-input>
-              <!-- <el-dropdown-menu slot="dropdown" style="width: 750px" v-if="showPrefix">
-                <el-dropdown-item
-                    v-for="item in results"
-                    :key="item"
-                    :command="item"
-                    v-html="highlight(item)">
-                </el-dropdown-item>
-              </el-dropdown-menu> -->
               <el-dropdown-menu></el-dropdown-menu>
             </el-dropdown>
           </div>
@@ -40,7 +32,7 @@
         <el-col :span="6">
           <div class="grid-content bg-purple test_a">
             <el-row>
-              <el-col :span="6" style="padding: 10px; margin-right: 20px">
+              <el-col :span="5" style="padding: 10px; margin-right: 20px">
                 <img class="image" src="./assets/images/home_art.jpg" style="width:70px"/>
               </el-col>
               <el-col :span="6" style="padding: 10px; margin-left: 20px">
@@ -53,7 +45,7 @@
         <el-col :span="6">
           <div class="grid-content bg-purple test_a">
             <el-row>
-              <el-col :span="6" style="padding: 10px; margin-right: 20px">
+              <el-col :span="5" style="padding: 10px; margin-right: 20px">
                 <img class="image" src="./assets/images/home_fie.jpg" style="width:70px"/>
               </el-col>
               <el-col :span="6" style="padding: 10px; margin-left: 20px">
@@ -66,11 +58,11 @@
         <el-col :span="6">
           <div class="grid-content bg-purple test_a">
             <el-row>
-              <el-col :span="6" style="padding: 10px; margin-right: 20px">
+              <el-col :span="5" style="padding: 10px; margin-right: 20px">
                 <img class="image" src="./assets/images/home_aut.jpg" style="width:70px"/>
               </el-col>
               <el-col :span="6" style="padding: 10px; margin-left: 20px">
-                <h3 class="sub-title">恶意包数量</h3>
+                <h3 class="sub-title">脚本包数量</h3>
                 <h2 class="sub-number">{{ statistic.mal_count }}</h2>
               </el-col>
             </el-row>
@@ -79,11 +71,11 @@
         <el-col :span="6">
           <div class="grid-content bg-purple test_a">
             <el-row>
-              <el-col :span="6" style="padding: 10px; margin-right: 20px">
+              <el-col :span="5" style="padding: 10px; margin-right: 20px">
                 <img class="image" src="./assets/images/home_org.jpg" style="width:70px"/>
               </el-col>
               <el-col :span="6" style="padding: 10px; margin-left: 20px">
-                <h3 class="sub-title">维护者数量</h3>
+                <h3 class="sub-title">过期维护者</h3>
                 <h2 class="sub-number">{{ statistic.maintainer }}</h2>
               </el-col>
             </el-row>
@@ -168,7 +160,7 @@ export default {
       reflect_options: options3,
       width: "600px",
       statistic: {
-        tot_count: "1104",
+        tot_count: "56835",
         desert_count: "17",
         mal_count: "12",
         maintainer: "943",
@@ -257,23 +249,41 @@ export default {
     },
 
     getInfo() {
-      axios.post("/cal_human").then((res) => {
-        console.log(res);
-        if(res != null) {
-          let dang = parseInt(res.data.split("/")[0]);
-          let total = parseInt(res.data.split("/")[1]);
-          this.options.series[0].data[0].value = total - dang;
-          this.options.series[0].data[1].value = dang;
+      axios.post("/cal_expired_human").then((res) => {
+        if(res.status == 200) {
+          this.statistic.maintainer = res.data.expired_num;
+          this.statistic.maintainer += '/';
+          this.statistic.maintainer += res.data.all_human_num;
+
         }
       });
-      axios.post("/cal_package").then((res) => {
-        console.log(res);
-        if(res != null) {
-          let dang = parseInt(res.data.split("/")[0]);
-          let total = parseInt(res.data.split("/")[1]);
-          this.reflect_options.series[0].data[0].value = total - dang;
-          this.reflect_options.series[0].data[1].value = dang;
-          //this.statistic.desert_count = res.data;
+      axios.post("/cal_expired_package").then((res) => {
+        if(res.status == 200) {
+          this.statistic.desert_count = res.data.expired_package_num;
+          this.statistic.desert_count += '/';
+          this.statistic.desert_count += res.data.all_package_num
+        }
+      });
+      axios.post("/cal_script").then((res) => {
+        if(res.status == 200) {
+          this.statistic.mal_count = res.data.script_num;
+          this.statistic.mal_count += '/';
+          this.statistic.mal_count += res.data.all_num
+        }
+      });
+      axios.post("/cal_lazy").then((res) => {
+        if(res.status == 200) {
+          this.options.series[0].data[0].value = res.data.over_two;
+          this.options.series[0].data[1].value = res.data.one_to_two;
+          this.options.series[0].data[2].value = res.data.under_one;
+          this.tot_count = res.data.all_num;
+        }
+      });
+      axios.post("/cal_lisence").then((res) => {
+        if(res.status == 200) {
+          this.reflect_options.series[0].data[0].value = res.data.no_num;
+          this.reflect_options.series[0].data[1].value = res.data.easy_num;
+          this.reflect_options.series[0].data[2].value = res.data.strict_num;
         }
       });
     },
@@ -308,7 +318,6 @@ export default {
       this.selected = false;
     },
   },
-
 
   created() {
     this.getInfo();
