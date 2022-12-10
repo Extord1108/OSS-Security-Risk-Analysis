@@ -1,41 +1,38 @@
+# Define your item pipelines here
+#
+# Don't forget to add your pipeline to the ITEM_PIPELINES setting
+# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+
+
+# useful for handling different item types with a single interface
+from itemadapter import ItemAdapter
+from twisted.enterprise import adbapi
+from ossd import settings
+import logging
 import pymysql
 import json
-import os
-from spider import getDoc
 
-# 读取json文件
+class OssdPipeline(object):
+    def process_item(self, item, spider):
+        return item
 
+class MysqlPipeline(object):
+    def __init__(self,depool):
+        self.depool = depool
+    @classmethod
+    def from_crawler(cls, crawler):
+        depool = adbapi.ConnectionPool('pymysql', host=settings.MYSQL_HOST, user=settings.MYSQL_USER,
+                         password=settings.MYSQL_PASS, database=settings.MYSQL_DBNAME)
+        return cls(depool)
 
-def readJson(path):
-    data = []
-    # 读取metadata.json文件
-    with open(path, 'r') as f:
-        data = json.load(f)
-        print(len(data['rows']))
-    return data['rows']
-
-
-# 保存数据到数据库
-def saveData(data, filename):
-    # 打开数据库连接，参数1：主机名或IP；参数2：用户名；参数3：密码；参数4：数据库名
-    db = pymysql.connect(host='localhost', user='root',
-                         password='root', database='ossd')
-
-    # 使用cursor()创建一个cursor对象
-    cursor = db.cursor()
-
-    for i in range(len(data)):
-        sql = ''
-        version = {}
-        print(data[i]['key'])
-        doc = getDoc(data[i]['key'])
-        # with open("doc.json", "w") as f:
-        #     f.write(str(doc))
-        print("file %s:" % filename, i, "/%d\n" % len(data))
+    def process_item(self, item, spider):
+        query = self.depool.runInteraction(self.do_insert, item)
+    def do_insert(self,cursor, item):
+        doc = json.loads(item['doc'])
+        print(doc['_id'])
         if 'error' in doc:
-            with open("miss.txt", "a") as f:
-                f.write(data[i]['key'] + "  reason:"+doc["reason"] + "\n")
-            continue
+            logging.error(doc['error'])
+            return
         try:
             ##################### 将maintainers插入human表 #####################
             if 'maintainers' in doc:
@@ -246,29 +243,5 @@ def saveData(data, filename):
                         sql = "insert into dependencies (dependent_id, dependee_id, type) values ('%s', '%s', '%s')" % (
                             key, doc['_id'], 'bundled')
                         cursor.execute(sql)
-            db.commit()
         except Exception as e:
-            with open("log.txt", "a") as f:
-                f.write(str(e))
-                f.write("   ")
-                f.write(doc['_id'])
-                f.write("   ")
-                f.write(str(e.__traceback__.tb_lineno))
-                f.write("\n")
-            db.rollback()
-        #
-    # 关闭数据库
-    db.close()
-
-
-if __name__ == '__main__':
-    datalist = os.listdir("./metadata")
-    datalist.sort()
-    # print(datalist)
-    # for datapath in datalist:
-    #     data = readJson(os.path.join("./metadata", datapath))
-    #     saveData(data, datapath)
-    data = readJson(os.path.join("./metadata", datalist[200]))
-    # data = [{"id": "ecce-preact", "key": "ecce-preact",
-    #          "value": {"rev": "11-5de12e74a0dc0d1af56e444b08008996"}}]
-    saveData(data, datalist[200])
+            logging.error(str(e)+"   "+doc['_id']+"  "+str(e.__traceback__.tb_lineno))
