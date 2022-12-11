@@ -1,6 +1,23 @@
 import pymysql
 import requests
-from spider import isDomainAvaliable
+import json
+
+godaddy_key = 'gHAC6xWj4aAG_4jgTzuUnm3omFskvT72sUQ'
+godaddy_secret = 'Ka5BuCzDfN3kCu5mAPLfDg'
+
+
+def isDomainAvaliable(domain):
+    header = {
+        "Accept": "application/json, text/javascript, */*; q=0.01",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept-Language": "zh-CN,zh;q=0.9,en-CN;q=0.8,en;q=0.7,en-US;q=0.6",
+        "Connection": "keep-alive",
+        "Content-Type": "application/json; charset=UTF-8",
+        "Authorization": "sso-key %s:%s" % (godaddy_key, godaddy_secret),
+    }
+    res = requests.get(
+        'https://api.godaddy.com/v1/domains/available?domain=%s' % domain, headers=header, timeout=50)
+    return json.loads(res.text)
 
 
 def checkdomain():

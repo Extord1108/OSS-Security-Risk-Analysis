@@ -37,12 +37,22 @@ def cal_res():
     have_res = 0
     for i in all_package:
         if i.repository is '':
-            no_res+=1
+            no_res += 1
         else:
-            have_res+=1
+            have_res += 1
 
-    print ({"no_res": no_res,"have_res":have_res, "all_num": all_num})
-    return ({"no_res": no_res,"have_res":have_res, "all_num": all_num})
+    print({"no_res": no_res, "have_res": have_res, "all_num": all_num})
+    return ({"no_res": no_res, "have_res": have_res, "all_num": all_num})
+
+
+def cal_summary():  # 计算概览数据
+    package_num = session.query(func.count(Package.id)).first()
+    deprecated_package_num = session.query(
+        func.count(Package.deprecated == 1)).first()
+    malicious_package_num = session.query(
+        func.count(Package.is_malicious == 1)).first()
+    all_human_num = session.query(func.count(Human.name)).first()
+    return ({"package": package_num[0], "deprecated": deprecated_package_num[0], "malicious": malicious_package_num[0], "maintainer": all_human_num[0]})
 
 
 if __name__ == '__main__':
