@@ -2,9 +2,13 @@
 
 数据相关
 
-### flume
+### metadata
+npm包元数据的示例文件
 
-```
-flume-ng agent -n a1 -c conf -f conf/example.conf
-```
+### ossd
+scrapy分布式框架爬取npm.js包信息
+
+### other
+
+其他文件
 

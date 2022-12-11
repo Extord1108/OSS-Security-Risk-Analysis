@@ -1,0 +1,232 @@
+2022-12-10 22:40:51 [scrapy.utils.log] INFO: Scrapy 2.7.1 started (bot: ossd)
+2022-12-10 22:40:51 [scrapy.utils.log] INFO: Versions: lxml 4.9.1.0, libxml2 2.9.12, cssselect 1.2.0, parsel 1.7.0, w3lib 2.1.1, Twisted 22.10.0, Python 3.7.15 (default, Nov 24 2022, 18:44:54) [MSC v.1916 64 bit (AMD64)], pyOpenSSL 22.1.0 (OpenSSL 3.0.7 1 Nov 2022), cryptography 38.0.4, Platform Windows-10-10.0.19041-SP0
+2022-12-10 22:40:51 [scrapy.crawler] INFO: Overridden settings:
+{'BOT_NAME': 'ossd',
+ 'CONCURRENT_REQUESTS': 32,
+ 'DOWNLOAD_DELAY': 0.1,
+ 'LOG_FILE': 'scrapy.log',
+ 'NEWSPIDER_MODULE': 'ossd.spiders',
+ 'REQUEST_FINGERPRINTER_IMPLEMENTATION': '2.7',
+ 'ROBOTSTXT_OBEY': True,
+ 'SPIDER_MODULES': ['ossd.spiders'],
+ 'TWISTED_REACTOR': 'twisted.internet.asyncioreactor.AsyncioSelectorReactor'}
+2022-12-10 22:40:51 [asyncio] DEBUG: Using selector: SelectSelector
+2022-12-10 22:40:51 [scrapy.utils.log] DEBUG: Using reactor: twisted.internet.asyncioreactor.AsyncioSelectorReactor
+2022-12-10 22:40:51 [scrapy.utils.log] DEBUG: Using asyncio event loop: asyncio.windows_events._WindowsSelectorEventLoop
+2022-12-10 22:40:51 [scrapy.extensions.telnet] INFO: Telnet Password: c003c8fd07d5d8f4
+2022-12-10 22:40:51 [scrapy.middleware] INFO: Enabled extensions:
+['scrapy.extensions.corestats.CoreStats',
+ 'scrapy.extensions.telnet.TelnetConsole',
+ 'scrapy.extensions.logstats.LogStats']
+2022-12-10 22:40:59 [scrapy.middleware] INFO: Enabled downloader middlewares:
+['scrapy.downloadermiddlewares.robotstxt.RobotsTxtMiddleware',
+ 'scrapy.downloadermiddlewares.httpauth.HttpAuthMiddleware',
+ 'scrapy.downloadermiddlewares.downloadtimeout.DownloadTimeoutMiddleware',
+ 'scrapy.downloadermiddlewares.defaultheaders.DefaultHeadersMiddleware',
+ 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware',
+ 'scrapy.downloadermiddlewares.retry.RetryMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.MetaRefreshMiddleware',
+ 'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware',
+ 'scrapy.downloadermiddlewares.redirect.RedirectMiddleware',
+ 'scrapy.downloadermiddlewares.cookies.CookiesMiddleware',
+ 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware',
+ 'scrapy.downloadermiddlewares.stats.DownloaderStats']
+2022-12-10 22:40:59 [scrapy.middleware] INFO: Enabled spider middlewares:
+['scrapy.spidermiddlewares.httperror.HttpErrorMiddleware',
+ 'scrapy.spidermiddlewares.offsite.OffsiteMiddleware',
+ 'scrapy.spidermiddlewares.referer.RefererMiddleware',
+ 'scrapy.spidermiddlewares.urllength.UrlLengthMiddleware',
+ 'scrapy.spidermiddlewares.depth.DepthMiddleware']
+2022-12-10 22:40:59 [scrapy.middleware] INFO: Enabled item pipelines:
+['ossd.pipelines.MysqlPipeline', 'ossd.pipelines.OssdPipeline']
+2022-12-10 22:40:59 [scrapy.core.engine] INFO: Spider opened
+2022-12-10 22:40:59 [scrapy.extensions.logstats] INFO: Crawled 0 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2022-12-10 22:40:59 [scrapy.extensions.telnet] INFO: Telnet console listening on 127.0.0.1:6023
+2022-12-10 22:41:00 [filelock] DEBUG: Attempting to acquire lock 2386280044424 on D:\tools\anaconda\envs\scrapy\lib\site-packages\tldextract\.suffix_cache/publicsuffix.org-tlds\de84b5ca2167d4c83e38fb162f2e8738.tldextract.json.lock
+2022-12-10 22:41:00 [filelock] DEBUG: Lock 2386280044424 acquired on D:\tools\anaconda\envs\scrapy\lib\site-packages\tldextract\.suffix_cache/publicsuffix.org-tlds\de84b5ca2167d4c83e38fb162f2e8738.tldextract.json.lock
+2022-12-10 22:41:00 [filelock] DEBUG: Attempting to release lock 2386280044424 on D:\tools\anaconda\envs\scrapy\lib\site-packages\tldextract\.suffix_cache/publicsuffix.org-tlds\de84b5ca2167d4c83e38fb162f2e8738.tldextract.json.lock
+2022-12-10 22:41:00 [filelock] DEBUG: Lock 2386280044424 released on D:\tools\anaconda\envs\scrapy\lib\site-packages\tldextract\.suffix_cache/publicsuffix.org-tlds\de84b5ca2167d4c83e38fb162f2e8738.tldextract.json.lock
+2022-12-10 22:41:00 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/robots.txt> (referer: None)
+2022-12-10 22:41:00 [protego] DEBUG: Rule at line 1 without any user agent to enforce it on.
+2022-12-10 22:41:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-> (referer: None)
+2022-12-10 22:41:01 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/->
+None
+2022-12-10 22:41:01 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--file--1> (referer: None)
+2022-12-10 22:41:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--file--1>
+None
+2022-12-10 22:41:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/---iop-npm-repo-name---> (referer: None)
+2022-12-10 22:41:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--123hoodmane-pyodide> (referer: None)
+2022-12-10 22:41:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/---iop-npm-repo-name--->
+None
+2022-12-10 22:41:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--hoodmane-test-pyodide> (referer: None)
+2022-12-10 22:41:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--can-you-install> (referer: None)
+2022-12-10 22:41:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--123hoodmane-pyodide>
+None
+2022-12-10 22:41:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--hoodmane-test-pyodide>
+None
+2022-12-10 22:41:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--can-you-install>
+None
+2022-12-10 22:41:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--ignore-workspace-root-check> (referer: None)
+2022-12-10 22:41:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--fix-lockfile> (referer: None)
+2022-12-10 22:41:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--legacy-peer-deps> (referer: None)
+2022-12-10 22:41:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--ignore-workspace-root-check>
+None
+2022-12-10 22:41:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--fix-lockfile>
+None
+2022-12-10 22:41:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--legacy-peer-deps>
+None
+2022-12-10 22:41:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--frozen-lockfile> (referer: None)
+2022-12-10 22:41:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--lockfile-only> (referer: None)
+2022-12-10 22:41:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--hiljson> (referer: None)
+2022-12-10 22:41:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--frozen-lockfile>
+None
+2022-12-10 22:41:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--lockfile-only>
+None
+2022-12-10 22:41:02 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--no-audit> (referer: None)
+2022-12-10 22:41:02 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--hiljson>
+None
+2022-12-10 22:41:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--only-prod> (referer: None)
+2022-12-10 22:41:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--no-audit>
+None
+2022-12-10 22:41:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--ignore-scripts> (referer: None)
+2022-12-10 22:41:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--only-prod>
+None
+2022-12-10 22:41:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--prefer-offline> (referer: None)
+2022-12-10 22:41:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--ignore-scripts>
+None
+2022-12-10 22:41:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--prefer-offline>
+None
+2022-12-10 22:41:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/--save-bundle> (referer: None)
+2022-12-10 22:41:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/--save-bundle>
+None
+2022-12-10 22:41:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-8080> (referer: None)
+2022-12-10 22:41:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-8080>
+None
+2022-12-10 22:41:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-8888> (referer: None)
+2022-12-10 22:41:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-adisagar2003-react-share-on-social> (referer: None)
+2022-12-10 22:41:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-8888>
+None
+2022-12-10 22:41:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-blanc-server-project> (referer: None)
+2022-12-10 22:41:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-adisagar2003-react-share-on-social>
+None
+2022-12-10 22:41:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-czar23> (referer: None)
+2022-12-10 22:41:03 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-blanc-server-project>
+None
+2022-12-10 22:41:03 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-d3-ushape> (referer: None)
+2022-12-10 22:41:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-czar23>
+None
+2022-12-10 22:41:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-d3-ushape>
+None
+2022-12-10 22:41:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-ethomson-test-package> (referer: None)
+2022-12-10 22:41:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-f0re7tpunk-resume> (referer: None)
+2022-12-10 22:41:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-ethomson-test-package>
+None
+2022-12-10 22:41:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-gzip-ize> (referer: None)
+2022-12-10 22:41:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-f0re7tpunk-resume>
+None
+2022-12-10 22:41:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-harseurl> (referer: None)
+2022-12-10 22:41:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-gzip-ize>
+None
+2022-12-10 22:41:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-harseurl>
+None
+2022-12-10 22:41:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-hes-plugion> (referer: None)
+2022-12-10 22:41:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-keyboardevent> (referer: None)
+2022-12-10 22:41:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-hes-plugion>
+None
+2022-12-10 22:41:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-keyboardevent>
+None
+2022-12-10 22:41:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-lidonghui> (referer: None)
+2022-12-10 22:41:04 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-lidonghui>
+None
+2022-12-10 22:41:04 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-liuxin> (referer: None)
+2022-12-10 22:41:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-liuxin>
+None
+2022-12-10 22:41:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-llscw-react-cli> (referer: None)
+2022-12-10 22:41:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-llscw-react-cli>
+None
+2022-12-10 22:41:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-mfxp> (referer: None)
+2022-12-10 22:41:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-mfxp>
+None
+2022-12-10 22:41:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-npm_publish2.0> (referer: None)
+2022-12-10 22:41:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-reaume> (referer: None)
+2022-12-10 22:41:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-npm_publish2.0>
+None
+2022-12-10 22:41:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-reaume>
+None
+2022-12-10 22:41:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-redux-forjm> (referer: None)
+2022-12-10 22:41:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-redux-forjm>
+None
+2022-12-10 22:41:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-temp-electron-manager-somiibo> (referer: None)
+2022-12-10 22:41:05 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-temp-electron-manager-somiibo>
+None
+2022-12-10 22:41:05 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-test-bitbucket-branch-manager> (referer: None)
+2022-12-10 22:41:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-test-bitbucket-branch-manager>
+None
+2022-12-10 22:41:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-tlecoeuv> (referer: None)
+2022-12-10 22:41:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-tlecoeuv>
+None
+2022-12-10 22:41:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-tompan-reacttemplate> (referer: None)
+2022-12-10 22:41:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-tompan-reacttemplate>
+None
+2022-12-10 22:41:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-unete-cli-typescript> (referer: None)
+2022-12-10 22:41:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-unete-cli-typescript>
+None
+2022-12-10 22:41:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-users-random-messages> (referer: None)
+2022-12-10 22:41:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-wlq-mxgrapheditor> (referer: None)
+2022-12-10 22:41:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-users-random-messages>
+None
+2022-12-10 22:41:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-wulinlong9.10rk> (referer: None)
+2022-12-10 22:41:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-wlq-mxgrapheditor>
+None
+2022-12-10 22:41:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/-ydfwwmkmmkmklkmffwfw> (referer: None)
+2022-12-10 22:41:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-wulinlong9.10rk>
+None
+2022-12-10 22:41:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0> (referer: None)
+2022-12-10 22:41:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/-ydfwwmkmmkmklkmffwfw>
+None
+2022-12-10 22:41:06 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0>
+None
+2022-12-10 22:41:06 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-> (referer: None)
+2022-12-10 22:41:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0->
+None
+2022-12-10 22:41:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0---top> (referer: None)
+2022-12-10 22:41:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0---top>
+None
+2022-12-10 22:41:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0--0double> (referer: None)
+2022-12-10 22:41:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-1-project> (referer: None)
+2022-12-10 22:41:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0--0double>
+None
+2022-12-10 22:41:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0-1-project>
+None
+2022-12-10 22:41:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-100> (referer: None)
+2022-12-10 22:41:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0-100>
+None
+2022-12-10 22:41:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-24> (referer: None)
+2022-12-10 22:41:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-3day1> (referer: None)
+2022-12-10 22:41:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0-24>
+None
+2022-12-10 22:41:07 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0-3day1>
+None
+2022-12-10 22:41:07 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-9> (referer: None)
+2022-12-10 22:41:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-60> (referer: None)
+2022-12-10 22:41:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0-9>
+None
+2022-12-10 22:41:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-_-0> (referer: None)
+2022-12-10 22:41:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0-60>
+None
+2022-12-10 22:41:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0-_-0>
+None
+2022-12-10 22:41:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-dd-trace> (referer: None)
+2022-12-10 22:41:08 [scrapy.crawler] INFO: Received SIGINT, shutting down gracefully. Send again to force 
+2022-12-10 22:41:08 [scrapy.core.engine] INFO: Closing spider (shutdown)
+2022-12-10 22:41:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-dd-trace-first> (referer: None)
+2022-12-10 22:41:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0-dd-trace>
+None
+2022-12-10 22:41:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0-dd-trace-first>
+None
+2022-12-10 22:41:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-dd-trace-init> (referer: None)
+2022-12-10 22:41:08 [scrapy.core.scraper] DEBUG: Scraped from <200 https://replicate.npmjs.com/0-dd-trace-init>
+None
+2022-12-10 22:41:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-dd-trace-init-first-datadog-enabled> (referer: None)
+2022-12-10 22:41:08 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://replicate.npmjs.com/0-dd-trace-init-first-production> (referer: None)
+2022-12-10 22:41:08 [scrapy.crawler] INFO: Received SIGINT twice, forcing unclean shutdown

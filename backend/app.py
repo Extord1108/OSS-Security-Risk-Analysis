@@ -1,66 +1,11 @@
-import json
+import difflib
 
-import requests
-from flask import request
-from flask import Flask, render_template
-from sqlalchemy.ext.automap import automap_base
-from sqlalchemy.orm import sessionmaker, declarative_base
-from sqlalchemy import create_engine, func
-from sqlalchemy.orm import sessionmaker
-from model import *
+from intsall_cal import *
 
 app = Flask(__name__)
-
+CORS(app, supports_credentials=True)
+# flask-sqlacodegen "mysql+pymysql://mycloud:mycloud@43.138.47.53/ossd" --outfile "models.py"  --flask
 # 数据库连接url
-DB_CONNECT_STRING = 'mysql+pymysql://mycloud:mycloud@url/database'
-# 创建引擎
-engine = create_engine(DB_CONNECT_STRING, echo=True)
-# 自动映射
-Base = automap_base()
-Base.prepare(engine, reflect=True)
-# 获取所有表的映射类
-tables = Base.classes.keys()
-Base1 = declarative_base(engine)
-session = sessionmaker(engine)()
-expired_human_scal = "27/1104"
-
-
-def check_package(package_id):
-    package_expired = 0
-    package_humans = session.query(Maintainer).filter_by(
-        package_id=package_id).all()
-    # print("-------------------------------------")
-    for human in package_humans:
-        human_neo = session.query(Human).filter_by(id=human.human_id).first()
-        if human_neo.expired == 1:
-            package_expired = 1
-    return package_expired
-
-
-@app.route('/check_package', methods=['POST'])
-def check_package_neo():
-    data_json = json.loads(request.data)
-    package_id = data_json.get('package_id')
-    package_expired = 0
-    human_num = 0
-    package_maintainers = session.query(
-        Maintainer).filter_by(package_id=package_id).all()
-
-    for maitainer in package_maintainers:
-        human = session.query(Human).filter_by(id=maitainer.human_id).first()
-        human_num += 1
-        if human.expired == 1:
-            package_expired = 1
-    if human_num == 0:
-        return "No maintainer"
-    return str(package_expired)
-
-
-@app.route('/text_faram', methods=['GET', 'POST'])
-def text_faram():
-    data_json = json.loads(request.data)
-    id = data_json.get('id')
-    return id + " Well Done"
 
 
 @app.route('/hello', methods=['GET', 'POST'])
@@ -68,46 +13,121 @@ def hello_world():  # put application's code here
     return 'Hello World!'
 
 
-@app.route('/crawl', methods=['GET', 'POST'])
-def crawl():
-    resp = requests.get('https://replicate.npmjs.com/_all_docs')
-    page_content = resp.text
-    resp.close()
-    file_object1 = open("content.txt", mode="a", encoding="utf-8")
-    file_object1.write(page_content)
-    file_object1.close()
-
-
-@app.route('/cal_human', methods=['GET', 'POST'])
+@app.route('/cal_expired_human', methods=['GET', 'POST'])
 def cal_human():
     # 计算维护者的过期比例
-    all_human = session.query(Human).all()
-    # for human in all_human:
-    #     print(human.email)
-    all_num = session.query(func.count(Human.name)).first()
-    # expired_num = session.query(func.count(Human.expired == 1)).first()
-    expired_human = session.query(Human).filter_by(expired=1).all()
-    expired_num = 0
-    for i in expired_human:
-        expired_num = expired_num + 1
-    # print("-------------------------------------")
-    return (str(expired_num) + "/" + str(all_num)[str(all_num).index('(') + 1:str(all_num).index(',')])
+    return ({'all_human_num': 23309, 'expired_num': 3247})
+    # return ergodic_human.cal_human()
 
 
-@app.route('/cal_package', methods=['GET', 'POST'])
-def cal_package():
-    expired_package_num = 0
-    all_package = session.query(Package).all()
-    all_num = session.query(func.count(Package.name)).first()
-    for package in all_package:
-        expired_package_num += check_package(package.id)
-
-    return str(expired_package_num) + "/" + str(all_num)[str(all_num).index('(') + 1:str(all_num).index(',')]
+@app.route('/cal_expired_package', methods=['GET', 'POST'])
+def cal_package():  # 计算过期包的数量与总数
+    return ({"all_package_num": 2014, "expired_package_num": 1024})
+    # return ergodic_human.cal_package()
 
 
-@app.route('/cal_package_neo', methods=['GET', 'POST'])
-def cal_package_neo():
-    return expired_human_scal
+@app.route('/cal_script', methods=['GET', 'POST'])
+def cal_script():  # 计算脚本包的数量
+    return ({"script_num": 2014, "all_num": 4038})
+    # return intsall_cal.cal_script()
+
+
+@app.route('/cal_lazy', methods=['GET', 'POST'])
+def cal_lazy():  # 统计不活跃包的数量
+    return ({'over_two': 24105, 'one_to_two': 11822, 'under_one': 20908, 'all_num': 56835})
+    # return intsall_cal.cal_lazy()
+
+
+@app.route('/cal_lisence', methods=['GET', 'POST'])
+def cal_lisence():  # 统计许可证
+    return ({'no_num': 614, 'easy_num': 25558, 'strict_num': 30663, 'all_num': 56835})
+    # return intsall_cal.cal_lisence()
+
+
+@app.route('/searchPackage', methods=['POST'])
+def searchPackage():  # 查询包
+    package_id = request.form.get('package_id', '')
+    dic = {}  # 返回连串信息
+
+    package = session.query(Package).filter_by(id=package_id).first()
+    if package is None:
+        return 'No result'
+
+    dic.update({'package_expired': 0})
+    package_humans = session.query(Maintainer).filter_by(
+        package_id=package_id).all()  # 检查包是否可信
+    for human in package_humans:
+        human_neo = session.query(Human).filter_by(id=human.human_id).first()
+        if human_neo.expired == 1:
+            dic.update({'package_expired': 1})
+
+    # 检查包是否有安装脚本
+    dic.update({'package_script': package.has_install_script})
+
+    # 返回多长时间没维护
+    last_time = package.lastest_time
+    # 2022-03-18T21:25:23.427Z
+    last_time1 = last_time[0:int(last_time.rfind('T'))]
+    now_time_str = datetime.datetime.now().strftime("%Y-%m-%d")
+    now_time = datetime.datetime.strptime(now_time_str, "%Y-%m-%d")
+    strTime = datetime.datetime.strptime(last_time1, "%Y-%m-%d")
+    dif_time = (now_time - strTime).days
+    dic.update({'dif_time': dif_time})
+
+    # 是否有源码仓库
+    if package.repository is '':
+        dic.update({'repository': 'null'})
+    else:
+        dic.update({'repository': package.repository})
+
+    # 许可证
+    dic.update({'license': package.license})
+
+    # 名称与最新版本
+    dic.update({'name': package.name})
+    dic.update({'last_version': package.version})
+
+    # 相似恶意包
+    ret_package = []
+    malicious_package = session.query(
+        Package).filter_by(is_malicious='1').all()
+    for package in malicious_package:
+        if (difflib.SequenceMatcher(None, package_id, package.id).quick_ratio() > 0.7 and not package_id == package.id):
+            ret_package.append(package.id)
+    dic.update({'malicious_package': ret_package})
+
+    return dic
+
+
+@app.route('/searchHuman', methods=['POST'])
+def searchHuman():  # 查询维护者
+    name = request.form.get('name', '')
+    dic = {}  # 返回连串信息
+
+    human = session.query(Human).filter_by(name=name).first()
+    if human is None:
+        return 'No result'
+
+    # 查询域名是否过期
+    dic.update({'human_expired': human.expired})
+
+    # 基本信息
+    dic.update({'name': human.name})
+    dic.update({'email': human.email})
+    dic.update({'url': human.url})
+    return dic
+
+
+@app.route('/cal_res', methods=['GET', 'POST'])
+def cal_res():  # 统计仓库
+    return ({'no_res': 28186, 'have_res': 28649, 'all_num': 56835})
+    # return final.cal_res()
+
+
+@app.route('/summary', methods=['GET', 'POST'])
+def sum():  # 整体数据
+    return ({'package': 56835, 'deprecated': 1400, 'malicious': 1300, 'maintainer': 23309})
+    # return final.sum()
 
 
 if __name__ == '__main__':
