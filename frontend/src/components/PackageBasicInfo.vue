@@ -3,14 +3,14 @@
     <div style="text-align:left;">
       <span class="package-name" >包名：{{ packageBasicInfo.package_name }}</span>
     </div>
-    <div style="padding-top:20px;">
+    <!-- <div style="padding-top:20px;">
       作者：
       <span v-for="(j, idx) in packageBasicInfo.authors" :key="j" class="author-name">{{ j }}
         <span v-if="idx<packageBasicInfo.authors.length-1" style="color: #A0A0A0; font-size: 16px"> / </span>
       </span>
-    </div>
+    </div> -->
     <div style="text-align:left;margin-top:20px;">
-      简介：<span class="abstract">{{ packageBasicInfo.abstract|ellipsis }}</span>
+      许可证：<span class="abstract">{{ packageBasicInfo.license|ellipsis }}</span>
     </div>
     <div style="padding-top:20px">
       <span class="latest-version">最新版本：{{ packageBasicInfo.latest_version }}</span>

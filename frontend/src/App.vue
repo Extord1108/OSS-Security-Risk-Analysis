@@ -141,14 +141,20 @@
             </div>
             <!--<el-button type="primary" @click="changeOpt">changeOpt</el-button>-->
           </el-col>
+          <br/>
           <el-col :span="9">
             <MyCharts id="chart4" :options="options4"></MyCharts>
           </el-col>
           <el-col :span="15">
+              <MyCharts id="chart5" :options="options5"></MyCharts>
+          </el-col>
+          <el-col :span="9">
+              <MyCharts id="chart6" :options="options6"></MyCharts>
+          </el-col>
+          <el-col :span="20">
             <div>
-              <MyCharts id="chart5" :options="options7" :width="width7" :height="height7"></MyCharts>
+              <MyCharts id="chart7" :options="options7" :width="width7" :height="height7"></MyCharts>
             </div>
-            <!--<el-button type="primary" @click="changeOpt">changeOpt</el-button>-->
           </el-col>
         </el-card>
       </div>
@@ -159,10 +165,11 @@
 <script>
 import axios from "axios";
 import MyCharts from "./components/MyCharts.vue";
-import { options1, options2, options3, options4, options7 } from "./options";
+import { options1, options2, options3, options4, options5, options6, options7 } from "./options";
 import PackageBasicInfo from "./components/PackageBasicInfo.vue";
 import PackageRiskInfo from "./components/PackageRiskInfo.vue";
 import AuthorInfo from "./components/AuthorInfo.vue";
+import qs from 'qs';
 
 export default {
   name: "App",
@@ -175,6 +182,8 @@ export default {
       options2: options2,
       options3: options3,
       options4: options4,
+      options5: options5,
+      options6: options6,
       options7: options7,
       width1: "600px",
       width2: "600px",
@@ -206,18 +215,18 @@ export default {
       ],
       value: "package_name",
       select: "package_name",
-      selected: true,
-      showPackage: true,
+      selected: false,
+      showPackage: false,
       activeNameOut1: "basicInfo1",
       activeNameOut2: "basicInfo2",
-      showAuthor: true,
+      showAuthor: false,
       results: " ",
       info: "",
 
       package_basic_info: {
         package_name: "element-ui",
-        authors: ["vigilant-perlmanstv", "shi_logic"],
-        abstract: "Element-Ul是国内饿了么前端团队为开发者、设计师和产品经理推出的基于 Vue 2.0 的桌面端组件库, Element的视觉设计更符合国人的观赏体验, 目前在国内使用的普及率，覆盖率，认知度是相当高的，生态已经基本全覆盖。",
+        //authors: ["vigilant-perlmanstv", "shi_logic"],
+        license: "MIT license",
         latest_version: "^2.15.10",
       },
 
@@ -243,7 +252,6 @@ export default {
           {proName: 'melonotmelo/rent-manager', url: 'https://github.com/melonotmelo/rent-manger'},
           {proName: 'shilogic0929/MyProject', url: 'https://github.com/shilogic0929/MyProject'},  
         ],
-
       },
 
     };
@@ -327,36 +335,123 @@ export default {
           this.options2.series[0].data[2].value = res.data.strict_num;
         }
       });
+      axios.post("/cal_res").then((res) => {
+        if(res.status == 200) {
+          this.options3.series[0].data[0].value = res.data.have_res;
+          this.options3.series[0].data[1].value = res.data.no_res;
+        }
+      });
+      axios.post("/cal_expired_human").then((res) => {
+        if(res.status == 200) {
+          this.options4.series[0].data[0].value = res.data.expired_num;
+          this.options4.series[0].data[1].value = res.data.all_human_num - res.data.expired_num;
+        }
+      });
+      axios.post("/cal_expired_package").then((res) => {
+        if(res.status == 200) {
+          this.options5.series[0].data[0].value = res.data.expired_package_num;
+          this.options5.series[0].data[1].value = res.data.all_package_num - res.data.expired_package_num;
+        }
+      });
+      axios.post("/cal_script").then((res) => {
+        if(res.status == 200) {
+          this.options6.series[0].data[0].value = res.data.script_num;
+          this.options6.series[0].data[1].value = res.data.all_num - res.data.script_num;
+        }
+      });
     },
 
     goSearch: function () {
       if (this.searchValue === "") {
         this.info = "error";
         this.selected = true;
-        this.results = "请输入包名";
+        this.results = "请输入包名/人名";
       } else {
-        console.log(this.searchValue);
-        axios.post("/searchPackage", { package_id: this.searchValue }).then((res) => {
-            debugger
+        if(this.select === "package_name") {
+          axios.post("/searchPackage", qs.stringify({ package_id: this.searchValue })).then((res) => {
+              this.selected = true;
+              if (res.data === "No result") {
+                this.info = "error";
+                this.showPackage = false;
+                this.showAuthor = false;
+                this.results = "搜索结果：当前包未收录";
+              } 
+              else if (res.data.package_expired == 1) {
+                this.showPackage = true;
+                this.showAuthor = false;
+                this.info = "warning";
+                this.results = "搜索结果：当前包存在维护者域名过期风险";
+                this.package_basic_info.package_name = res.data.name;
+                this.package_basic_info.latest_version = res.data.last_version;
+                this.package_basic_info.license = res.data.license;
+
+                this.package_risk_info.package_name = res.data.name;
+                this.package_risk_info.license = res.data.license;
+                this.package_risk_info.latest_version = res.data.last_version;
+                this.package_risk_info.maintainer_overdue = true;
+                this.package_risk_info.scripts_equipped = res.data.package_script;
+                this.package_risk_info.confusing_malpackages = res.data.malicious_package;
+                this.package_risk_info.repository = res.data.repository;
+                this.package_risk_info.recent_mantainances = res.data.dif_time + ' days ago';
+              } 
+              else {
+                this.showPackage = true;
+                this.showAuthor = false;
+                this.info = "success";
+                this.results = "搜索结果：当前包可信";
+                this.package_basic_info.package_name = res.data.name;
+                this.package_basic_info.latest_version = res.data.last_version;
+                this.package_basic_info.license = res.data.license;
+
+                this.package_risk_info.package_name = res.data.name;
+                this.package_risk_info.license = res.data.license;
+                this.package_risk_info.latest_version = res.data.last_version;
+                this.package_risk_info.maintainer_overdue = false;
+                this.package_risk_info.scripts_equipped = res.data.package_script;
+                this.package_risk_info.confusing_malpackages = res.data.malicious_package;
+                this.package_risk_info.repository = res.data.repository;
+                this.package_risk_info.recent_mantainances = res.data.dif_time + ' days ago';
+              }
+          });
+        }
+        else {
+          axios.post("/searchHuman", qs.stringify({ name: this.searchValue })).then((res) => {
             this.selected = true;
-            if (res.data === "No maintainer") {
-              this.info = "warning";
-              this.results = "搜索结果：当前包未收录";
-            } 
-            else if (res.data == 1) {
+            if (res.data === "No result") {
+              this.showPackage = false;
+              this.showAuthor = false;
               this.info = "error";
-              this.results = "搜索结果：当前包存在维护者域名过期风险";
+              this.results = "搜索结果：未查到该作者";
+            }
+            else if(res.data.human_expired == 1) {
+              this.showAuthor = true;
+              this.showPackage = false;
+              this.info = "warning";
+              this.results = "该作者域名已过期";
+              this.author_info.maintainer_overdue = true;
+              this.author_info.name = res.data.name;
+              this.author_info.email = res.data.email;
+              this.author_info.personal_site = res.data.url;
             } 
             else {
+              this.showAuthor = true;
+              this.showPackage = false;
               this.info = "success";
-              this.results = "搜索结果：当前包可信";
+              this.results = "该作者域名未过期";
+              this.author_info.maintainer_overdue = false;
+              this.author_info.name = res.data.name;
+              this.author_info.email = res.data.email;
+              this.author_info.personal_site = res.data.url;
             }
           });
+        }
       }
     },
 
     close_result() {
       this.selected = false;
+      this.showPackage = false;
+      this.showAuthor = false;
     },
   },
 

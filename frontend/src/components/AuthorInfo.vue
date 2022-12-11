@@ -3,9 +3,9 @@
     <div style="text-align:left;">
       <span class="author-name" >作者：{{ authorInfo.name }}</span>
     </div>
-    <div style="text-align:left;margin-top:20px;">
+    <!-- <div style="text-align:left;margin-top:20px;">
       简介：<span class="abstract">{{ authorInfo.abstract|ellipsis }}</span>
-    </div>
+    </div> -->
     <div style="padding-top:20px">
       <span class="latest-version">邮箱：{{ authorInfo.email }}</span>
     </div>
@@ -15,14 +15,14 @@
     <div v-if="authorInfo.maintainer_overdue" style="padding-top:20px;color:#A0A0A0;font-size:16px">
       注意：该作者域名已过期！
     </div>
-    <div id="network_id" class="network" style="padding-top:20px;height:70vh"></div>
+    <!-- <div id="network_id" class="network" style="padding-top:20px;height:70vh"></div>
       <el-dialog title="测试框" :visible.sync="dialogVisible" width="width">
         <div>参与项目</div>
         <div slot="footer">
           <el-button @click="dialogVisible = false">取 消</el-button>
           <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
         </div>
-      </el-dialog>
+      </el-dialog> -->
     </div>
 </template>
   

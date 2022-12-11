@@ -1,8 +1,9 @@
 let test_msg1 = "包活跃度分析";
 let test_msg2 = "许可证分析";
 let test_msg3 = "是否提供仓库";
-let test_msg4 = "域名过期维护者";
+let test_msg4 = "过期维护者";
 let test_msg5 = "含过期维护者的包";
+let test_msg6 = "含安装脚本的包";
 
 import {npmDependencies} from "./views/npmDependencies.js"
 
@@ -71,7 +72,6 @@ export const options2 = {
   ],
 };
 
-
 export const options3 = {
   title: {
     text: test_msg3,
@@ -98,36 +98,120 @@ export const options3 = {
 
 export const options4 = {
   legend: {
-    orient: "vertical",
-    x: "left",
-    data: ["风险1", "风险2", "风险3", "风险4", "风险5"],
+    data: ["域名过期维护者", "域名未过期维护者"],
   },
-  xAxis: {
-    type: "category",
-    data: ["2020", "2021", "2022"],
-  },
-  yAxis: {
-    type: "value",
+  title: {
+    text: test_msg4,
   },
   series: [
     {
-      data: [43.3, 85.8, 93.7],
-      type: "line",
-    },
-    {
-      data: [83.1, 73.4, 55.1],
-      type: "line",
-    },
-    {
-      data: [86.4, 65.2, 82.5],
-      type: "line",
-    },
-    {
-      data: [72.4, 53.9, 39.1],
-      type: "line",
+      type: "pie",
+      radius: ["45%", "70%"],
+      avoidLabelOverlap: false,
+      itemStyle: {
+        borderRadius: 10,
+        borderColor: '#fff',
+        borderWidth: 2
+      },
+      label: {
+        show: false,
+        position: "center",
+      },
+      labelLine: {
+        show: false,
+      },
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: "20",
+          fontWeight: "bold",
+        },
+      },
+      data: [
+        { value: 614, name: "域名过期维护者" },
+        { value: 25558, name: "域名未过期维护者" },
+      ],
     },
   ],
 };
+
+export const options5 = {
+  legend: {
+    data: ["过期包", "未过期包"],
+  },
+  title: {
+    text: test_msg5,
+  },
+  series: [
+    {
+      type: "pie",
+      radius: ["45%", "70%"],
+      avoidLabelOverlap: false,
+      itemStyle: {
+        borderRadius: 10,
+        borderColor: '#fff',
+        borderWidth: 2
+      },
+      label: {
+        show: false,
+        position: "center",
+      },
+      labelLine: {
+        show: false,
+      },
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: "20",
+          fontWeight: "bold",
+        },
+      },
+      data: [
+        { value: 614, name: "过期包" },
+        { value: 25558, name: "未过期包" },
+      ],
+    },
+  ],
+};
+
+export const options6 = {
+  legend: {
+    data: ["含安装脚本包", "未安装脚本包"],
+  },
+  title: {
+    text: test_msg6,
+  },
+  series: [
+    {
+      type: "pie",
+      radius: ["70%"],
+      avoidLabelOverlap: false,
+      label: {
+        show: false,
+        position: "center",
+      },
+      labelLine: {
+        show: false,
+      },
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: "20",
+          fontWeight: "bold",
+        },
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      },
+      data: [
+        { value: 614, name: "含安装脚本包" },
+        { value: 25558, name: "未安装脚本包" },
+      ],
+    },
+  ],
+}
 
 export const options7 = {
   title: {
