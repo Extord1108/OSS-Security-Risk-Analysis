@@ -127,13 +127,28 @@
       <div class="container">
         <el-card class="card">
           <el-col :span="15">
-            <div @mouseenter="mouseOver" @mouseleave="mouseLeave">
-              <MyCharts id="chart1" :options="options" :width="width"></MyCharts>
+            <div @mouseenter="mouseOver1" @mouseleave="mouseLeave1">
+              <MyCharts id="chart1" :options="options1" :width="width1"></MyCharts>
             </div>
             <!--<el-button type="primary" @click="changeOpt">changeOpt</el-button>-->
           </el-col>
           <el-col :span="9">
-            <MyCharts id="chart2" :options="reflect_options"></MyCharts>
+            <MyCharts id="chart2" :options="options2"></MyCharts>
+          </el-col>
+          <el-col :span="15">
+            <div @mouseenter="mouseOver2" @mouseleave="mouseLeave2">
+              <MyCharts id="chart3" :options="options3" :width="width2"></MyCharts>
+            </div>
+            <!--<el-button type="primary" @click="changeOpt">changeOpt</el-button>-->
+          </el-col>
+          <el-col :span="9">
+            <MyCharts id="chart4" :options="options4"></MyCharts>
+          </el-col>
+          <el-col :span="15">
+            <div>
+              <MyCharts id="chart5" :options="options7" :width="width7" :height="height7"></MyCharts>
+            </div>
+            <!--<el-button type="primary" @click="changeOpt">changeOpt</el-button>-->
           </el-col>
         </el-card>
       </div>
@@ -144,7 +159,7 @@
 <script>
 import axios from "axios";
 import MyCharts from "./components/MyCharts.vue";
-import { options1, options2, options3, options4 } from "./options";
+import { options1, options2, options3, options4, options7 } from "./options";
 import PackageBasicInfo from "./components/PackageBasicInfo.vue";
 import PackageRiskInfo from "./components/PackageRiskInfo.vue";
 import AuthorInfo from "./components/AuthorInfo.vue";
@@ -156,14 +171,27 @@ export default {
   },
   data() {
     return {
-      options: options1,
-      reflect_options: options3,
-      width: "600px",
+      options1: options1,
+      options2: options2,
+      options3: options3,
+      options4: options4,
+      options7: options7,
+      width1: "600px",
+      width2: "600px",
+      width3: "600px",
+      width7: "1500px",
+      height7: "900px",
       statistic: {
-        tot_count: "56835",
-        desert_count: "17",
-        mal_count: "12",
-        maintainer: "943",
+        tot_count: 0,
+        desert_count: 0,
+        mal_count: 0,
+        maintainer: 0,
+        script_package: 0,
+
+      },
+      expired_count: {
+        expired_package: 0,
+        expired_human: 0
       },
       searchValue: "",
       select_options: [
@@ -221,69 +249,82 @@ export default {
     };
   },
   methods: {
-    mouseOver() {
-      this.changeWidth();
+    mouseOver1() {
+      this.changeWidth1();
     },
-
-    mouseLeave() {
-      this.changeWidth();
+    mouseLeave1() {
+      this.changeWidth1();
     },
-
-    changeWidth() {
-      if(this.width == "600px") {
-        //console.log(1)
-        this.width = "800px";
-      } else {
-        //console.log(2)
-        this.width = "600px";
-      }
+    mouseOver2() {
+      this.changeWidth2();
+    },
+    mouseLeave2() {
+      this.changeWidth2();
+    },
+    mouseOver3() {
+      this.changeWidth3();
+    },
+    mouseLeave3() {
+      this.changeWidth3();
+    },
+    changeWidth1() {
+      if(this.width1 == "600px") this.width1 = "800px";
+      else this.width1 = "600px";
+    },
+    changeWidth2() {
+      if(this.width2 == "600px") this.width2 = "800px";
+      else this.width2 = "600px";
+    },
+    changeWidth3() {
+      if(this.width3 == "600px") this.width3 = "800px";
+      else this.width3 = "600px";
     },
     changeOpt() {
       if(this.options == options1) {
         this.options = options2;
-        this.reflect_options = options4;
+        this.options3 = options4;
       } else {
         this.options = options1;
-        this.reflect_options = options3;
+        this.options3 = options3;
       }
     },
 
     getInfo() {
+      axios.post("/summary").then((res=>{
+        if(res.status == 200) {
+          this.statistic.tot_count = res.data.package;
+          this.statistic.desert_count = res.data.deprecated;
+          this.statistic.mal_count = res.data.malicious;
+          this.statistic.maintainer = res.data.maintainer
+        }
+      }))
       axios.post("/cal_expired_human").then((res) => {
         if(res.status == 200) {
-          this.statistic.maintainer = res.data.expired_num;
-          this.statistic.maintainer += '/';
-          this.statistic.maintainer += res.data.all_human_num;
-
+          this.expired_count.expired_human = res.data.expired_num;
         }
       });
       axios.post("/cal_expired_package").then((res) => {
         if(res.status == 200) {
-          this.statistic.desert_count = res.data.expired_package_num;
-          this.statistic.desert_count += '/';
-          this.statistic.desert_count += res.data.all_package_num
+          this.expired_count.expired_package = res.data.expired_package_num;
         }
       });
       axios.post("/cal_script").then((res) => {
         if(res.status == 200) {
-          this.statistic.mal_count = res.data.script_num;
-          this.statistic.mal_count += '/';
-          this.statistic.mal_count += res.data.all_num
+          this.statistic.script_package = res.data.script_num;
         }
       });
       axios.post("/cal_lazy").then((res) => {
         if(res.status == 200) {
-          this.options.series[0].data[0].value = res.data.over_two;
-          this.options.series[0].data[1].value = res.data.one_to_two;
-          this.options.series[0].data[2].value = res.data.under_one;
-          this.tot_count = res.data.all_num;
+          this.options1.series[0].data[0].value = res.data.over_two;
+          this.options1.series[0].data[1].value = res.data.one_to_two;
+          this.options1.series[0].data[2].value = res.data.under_one;
         }
       });
       axios.post("/cal_lisence").then((res) => {
         if(res.status == 200) {
-          this.reflect_options.series[0].data[0].value = res.data.no_num;
-          this.reflect_options.series[0].data[1].value = res.data.easy_num;
-          this.reflect_options.series[0].data[2].value = res.data.strict_num;
+          this.options2.series[0].data[0].value = res.data.no_num;
+          this.options2.series[0].data[1].value = res.data.easy_num;
+          this.options2.series[0].data[2].value = res.data.strict_num;
         }
       });
     },
@@ -295,8 +336,8 @@ export default {
         this.results = "请输入包名";
       } else {
         console.log(this.searchValue);
-        axios.post("/check_package", { package_id: this.searchValue }).then((res) => {
-            console.log(res);
+        axios.post("/searchPackage", { package_id: this.searchValue }).then((res) => {
+            debugger
             this.selected = true;
             if (res.data === "No maintainer") {
               this.info = "warning";
@@ -324,8 +365,7 @@ export default {
   },
 
   mounted() {
-    this.options = options1;
-    this.reflect_options = options3;
+
   },
 
   watch: {
