@@ -1,15 +1,31 @@
 <template>
   <div>
     <el-header>
-      <el-menu class="el-menu-demo" mode="horizontal" background-color="#FFF"
-        style="padding-left: 0%; padding-right: 5%">
+      <el-menu class="el-menu-demo" mode="horizontal" background-color="#FFF" style="padding-left: 0%; padding-right: 5%">
         <el-menu-item style="font-size: larger; font-weight: 600">风险分析</el-menu-item>
+
+        <el-popover style="float: right;padding-top: 20px;" placement="bottom-start" title="说明" :width="400" trigger="hover">
+          <template #reference>
+            <el-button icon="el-icon-question" circle />
+          </template>
+          <div style="padding:10px;line-height: 18px;">
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;本系统通过爬取npm包管理器中的软件包信息，分析javascript供应链的各个环节中可能存在的安全风险，并实现了分析结果的可视化。本系统还为用户提供了检索功能，用来查找具体某个包可能存在的安全风险。</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;在本系统中我们主要考虑以下六点可能存在的风险：</p>
+            <ul style="padding:20px">
+              <li>过期的维护者域。如果维护者的域已过期，并且在其帐户上没有设置2FA身份验证，则攻击者可以劫持一个组件。</li>
+              <li>安装脚本。攻击者可以使用安装脚本，通过软件包安装步骤来运行执行恶意行为的命令。</li>
+              <li>未维护的包。攻击者可以针对那些更有可能因为缺乏维护而偷偷侵入恶意软件的软件包。</li>
+              <li>第三方包的代码仓库。代码仓库与nlim中的代码版本不一致，或者代码仓库长时间没有提交。</li>
+              <li>名称相似的恶意软件。</li>
+              <li>宽松的开源许可证。</li>
+            </ul>
+          </div>
+        </el-popover>
 
         <div class="input-box-body">
           <div class="input-box">
             <el-dropdown>
-              <el-input placeholder="请输入内容" v-model="searchValue" class="input-with-select"
-                @keyup.enter.native="goSearch" style="width: 750px; font-size: 17px">
+              <el-input placeholder="请输入内容" v-model="searchValue" class="input-with-select" @keyup.enter.native="goSearch" style="width: 750px; font-size: 17px">
                 <el-select v-model="select" slot="prepend" placeholder="检索依据" style="width: 130px">
                   <el-option v-for="item in select_options" :key="item.value" :label="item.label" :value="item.value">
                   </el-option>
@@ -33,7 +49,7 @@
           <div class="grid-content bg-purple test_a">
             <el-row>
               <el-col :span="5" style="padding: 10px; margin-right: 20px">
-                <img class="image" src="./assets/images/home_art.jpg" style="width:70px"/>
+                <img class="image" src="./assets/images/home_art.jpg" style="width: 70px" />
               </el-col>
               <el-col :span="6" style="padding: 10px; margin-left: 20px">
                 <h3 class="sub-title">当前总包数</h3>
@@ -46,7 +62,7 @@
           <div class="grid-content bg-purple test_a">
             <el-row>
               <el-col :span="5" style="padding: 10px; margin-right: 20px">
-                <img class="image" src="./assets/images/home_fie.jpg" style="width:70px"/>
+                <img class="image" src="./assets/images/home_fie.jpg" style="width: 70px" />
               </el-col>
               <el-col :span="6" style="padding: 10px; margin-left: 20px">
                 <h3 class="sub-title">弃用包数量</h3>
@@ -59,10 +75,10 @@
           <div class="grid-content bg-purple test_a">
             <el-row>
               <el-col :span="5" style="padding: 10px; margin-right: 20px">
-                <img class="image" src="./assets/images/home_aut.jpg" style="width:70px"/>
+                <img class="image" src="./assets/images/home_aut.jpg" style="width: 70px" />
               </el-col>
               <el-col :span="6" style="padding: 10px; margin-left: 20px">
-                <h3 class="sub-title">脚本包数量</h3>
+                <h3 class="sub-title">恶意包数量</h3>
                 <h2 class="sub-number">{{ statistic.mal_count }}</h2>
               </el-col>
             </el-row>
@@ -72,10 +88,10 @@
           <div class="grid-content bg-purple test_a">
             <el-row>
               <el-col :span="5" style="padding: 10px; margin-right: 20px">
-                <img class="image" src="./assets/images/home_org.jpg" style="width:70px"/>
+                <img class="image" src="./assets/images/home_org.jpg" style="width: 70px" />
               </el-col>
               <el-col :span="6" style="padding: 10px; margin-left: 20px">
-                <h3 class="sub-title">过期维护者</h3>
+                <h3 class="sub-title">维护者数量</h3>
                 <h2 class="sub-number">{{ statistic.maintainer }}</h2>
               </el-col>
             </el-row>
@@ -89,11 +105,7 @@
         <el-col :span="22">
           <div>
             <el-row>
-              <el-alert class="results-box" 
-                :title="results" 
-                :type="info" 
-                @close="close_result" 
-                style="
+              <el-alert class="results-box" :title="results" :type="info" @close="close_result" style="
                   font-size: larger !important;
                   font-weight: bold !important;
                 ">
@@ -103,10 +115,10 @@
 
           <div v-if="showPackage" class="infoBox">
             <el-tabs v-model="activeNameOut1">
-              <el-tab-pane label="基本信息" name="basicInfo1" style="text-align:left">
+              <el-tab-pane label="基本信息" name="basicInfo1" style="text-align: left">
                 <PackageBasicInfo :packageBasicInfo="package_basic_info"></PackageBasicInfo>
               </el-tab-pane>
-              <el-tab-pane label="风险信息" name="riskInfo1" style="text-align:left">
+              <el-tab-pane label="风险信息" name="riskInfo1" style="text-align: left">
                 <PackageRiskInfo :packageRiskInfo="package_risk_info"></PackageRiskInfo>
               </el-tab-pane>
             </el-tabs>
@@ -114,7 +126,7 @@
 
           <div v-if="showAuthor" class="infoBox">
             <el-tabs v-model="activeNameOut2">
-              <el-tab-pane label="作者信息" name="basicInfo2" style="text-align:left">
+              <el-tab-pane label="作者信息" name="basicInfo2" style="text-align: left">
                 <AuthorInfo :authorInfo="author_info"></AuthorInfo>
               </el-tab-pane>
             </el-tabs>
@@ -141,15 +153,15 @@
             </div>
             <!--<el-button type="primary" @click="changeOpt">changeOpt</el-button>-->
           </el-col>
-          <br/>
+          <br />
           <el-col :span="9">
             <MyCharts id="chart4" :options="options4"></MyCharts>
           </el-col>
           <el-col :span="15">
-              <MyCharts id="chart5" :options="options5"></MyCharts>
+            <MyCharts id="chart5" :options="options5"></MyCharts>
           </el-col>
           <el-col :span="9">
-              <MyCharts id="chart6" :options="options6"></MyCharts>
+            <MyCharts id="chart6" :options="options6"></MyCharts>
           </el-col>
           <el-col :span="20">
             <div>
@@ -165,16 +177,27 @@
 <script>
 import axios from "axios";
 import MyCharts from "./components/MyCharts.vue";
-import { options1, options2, options3, options4, options5, options6, options7 } from "./options";
+import {
+  options1,
+  options2,
+  options3,
+  options4,
+  options5,
+  options6,
+  options7,
+} from "./options";
 import PackageBasicInfo from "./components/PackageBasicInfo.vue";
 import PackageRiskInfo from "./components/PackageRiskInfo.vue";
 import AuthorInfo from "./components/AuthorInfo.vue";
-import qs from 'qs';
+import qs from "qs";
 
 export default {
   name: "App",
   components: {
-    MyCharts, PackageBasicInfo, PackageRiskInfo, AuthorInfo
+    MyCharts,
+    PackageBasicInfo,
+    PackageRiskInfo,
+    AuthorInfo,
   },
   data() {
     return {
@@ -196,11 +219,10 @@ export default {
         mal_count: 0,
         maintainer: 0,
         script_package: 0,
-
       },
       expired_count: {
         expired_package: 0,
-        expired_human: 0
+        expired_human: 0,
       },
       searchValue: "",
       select_options: [
@@ -247,13 +269,24 @@ export default {
         maintainer_overdue: true,
         abstract: "Hello World!",
         projects_involved: [
-          {proName: 'Re-Li-Life/OSS-Security-Analysis', url: 'https://github.com/Re-Li-fe/OSS-Security-Risk-Analysis'},
-          {proName: 'natsunishitagau/sework', url: 'https://github.com/natsunishitagau/sework'}, 
-          {proName: 'melonotmelo/rent-manager', url: 'https://github.com/melonotmelo/rent-manger'},
-          {proName: 'shilogic0929/MyProject', url: 'https://github.com/shilogic0929/MyProject'},  
+          {
+            proName: "Re-Li-Life/OSS-Security-Analysis",
+            url: "https://github.com/Re-Li-fe/OSS-Security-Risk-Analysis",
+          },
+          {
+            proName: "natsunishitagau/sework",
+            url: "https://github.com/natsunishitagau/sework",
+          },
+          {
+            proName: "melonotmelo/rent-manager",
+            url: "https://github.com/melonotmelo/rent-manger",
+          },
+          {
+            proName: "shilogic0929/MyProject",
+            url: "https://github.com/shilogic0929/MyProject",
+          },
         ],
       },
-
     };
   },
   methods: {
@@ -276,19 +309,19 @@ export default {
       this.changeWidth3();
     },
     changeWidth1() {
-      if(this.width1 == "600px") this.width1 = "800px";
+      if (this.width1 == "600px") this.width1 = "800px";
       else this.width1 = "600px";
     },
     changeWidth2() {
-      if(this.width2 == "600px") this.width2 = "800px";
+      if (this.width2 == "600px") this.width2 = "800px";
       else this.width2 = "600px";
     },
     changeWidth3() {
-      if(this.width3 == "600px") this.width3 = "800px";
+      if (this.width3 == "600px") this.width3 = "800px";
       else this.width3 = "600px";
     },
     changeOpt() {
-      if(this.options == options1) {
+      if (this.options == options1) {
         this.options = options2;
         this.options3 = options4;
       } else {
@@ -298,65 +331,68 @@ export default {
     },
 
     getInfo() {
-      axios.post("/summary").then((res=>{
-        if(res.status == 200) {
+      axios.post("/summary").then((res) => {
+        if (res.status == 200) {
           this.statistic.tot_count = res.data.package;
           this.statistic.desert_count = res.data.deprecated;
           this.statistic.mal_count = res.data.malicious;
-          this.statistic.maintainer = res.data.maintainer
+          this.statistic.maintainer = res.data.maintainer;
         }
-      }))
+      });
       axios.post("/cal_expired_human").then((res) => {
-        if(res.status == 200) {
+        if (res.status == 200) {
           this.expired_count.expired_human = res.data.expired_num;
         }
       });
       axios.post("/cal_expired_package").then((res) => {
-        if(res.status == 200) {
+        if (res.status == 200) {
           this.expired_count.expired_package = res.data.expired_package_num;
         }
       });
       axios.post("/cal_script").then((res) => {
-        if(res.status == 200) {
+        if (res.status == 200) {
           this.statistic.script_package = res.data.script_num;
         }
       });
       axios.post("/cal_lazy").then((res) => {
-        if(res.status == 200) {
+        if (res.status == 200) {
           this.options1.series[0].data[0].value = res.data.over_two;
           this.options1.series[0].data[1].value = res.data.one_to_two;
           this.options1.series[0].data[2].value = res.data.under_one;
         }
       });
       axios.post("/cal_lisence").then((res) => {
-        if(res.status == 200) {
+        if (res.status == 200) {
           this.options2.series[0].data[0].value = res.data.no_num;
           this.options2.series[0].data[1].value = res.data.easy_num;
           this.options2.series[0].data[2].value = res.data.strict_num;
         }
       });
       axios.post("/cal_res").then((res) => {
-        if(res.status == 200) {
+        if (res.status == 200) {
           this.options3.series[0].data[0].value = res.data.have_res;
           this.options3.series[0].data[1].value = res.data.no_res;
         }
       });
       axios.post("/cal_expired_human").then((res) => {
-        if(res.status == 200) {
+        if (res.status == 200) {
           this.options4.series[0].data[0].value = res.data.expired_num;
-          this.options4.series[0].data[1].value = res.data.all_human_num - res.data.expired_num;
+          this.options4.series[0].data[1].value =
+            res.data.all_human_num - res.data.expired_num;
         }
       });
       axios.post("/cal_expired_package").then((res) => {
-        if(res.status == 200) {
+        if (res.status == 200) {
           this.options5.series[0].data[0].value = res.data.expired_package_num;
-          this.options5.series[0].data[1].value = res.data.all_package_num - res.data.expired_package_num;
+          this.options5.series[0].data[1].value =
+            res.data.all_package_num - res.data.expired_package_num;
         }
       });
       axios.post("/cal_script").then((res) => {
-        if(res.status == 200) {
+        if (res.status == 200) {
           this.options6.series[0].data[0].value = res.data.script_num;
-          this.options6.series[0].data[1].value = res.data.all_num - res.data.script_num;
+          this.options6.series[0].data[1].value =
+            res.data.all_num - res.data.script_num;
         }
       });
     },
@@ -367,16 +403,20 @@ export default {
         this.selected = true;
         this.results = "请输入包名/人名";
       } else {
-        if(this.select === "package_name") {
-          axios.post("/searchPackage", qs.stringify({ package_id: this.searchValue })).then((res) => {
+        if (this.select === "package_name") {
+          axios
+            .post(
+              "/searchPackage",
+              qs.stringify({ package_id: this.searchValue })
+            )
+            .then((res) => {
               this.selected = true;
               if (res.data === "No result") {
                 this.info = "error";
                 this.showPackage = false;
                 this.showAuthor = false;
                 this.results = "搜索结果：当前包未收录";
-              } 
-              else if (res.data.package_expired == 1) {
+              } else if (res.data.package_expired == 1) {
                 this.showPackage = true;
                 this.showAuthor = false;
                 this.info = "warning";
@@ -389,12 +429,14 @@ export default {
                 this.package_risk_info.license = res.data.license;
                 this.package_risk_info.latest_version = res.data.last_version;
                 this.package_risk_info.maintainer_overdue = true;
-                this.package_risk_info.scripts_equipped = res.data.package_script;
-                this.package_risk_info.confusing_malpackages = res.data.malicious_package;
+                this.package_risk_info.scripts_equipped =
+                  res.data.package_script;
+                this.package_risk_info.confusing_malpackages =
+                  res.data.malicious_package;
                 this.package_risk_info.repository = res.data.repository;
-                this.package_risk_info.recent_mantainances = res.data.dif_time + ' days ago';
-              } 
-              else {
+                this.package_risk_info.recent_mantainances =
+                  res.data.dif_time + " days ago";
+              } else {
                 this.showPackage = true;
                 this.showAuthor = false;
                 this.info = "success";
@@ -407,43 +449,45 @@ export default {
                 this.package_risk_info.license = res.data.license;
                 this.package_risk_info.latest_version = res.data.last_version;
                 this.package_risk_info.maintainer_overdue = false;
-                this.package_risk_info.scripts_equipped = res.data.package_script;
-                this.package_risk_info.confusing_malpackages = res.data.malicious_package;
+                this.package_risk_info.scripts_equipped =
+                  res.data.package_script;
+                this.package_risk_info.confusing_malpackages =
+                  res.data.malicious_package;
                 this.package_risk_info.repository = res.data.repository;
-                this.package_risk_info.recent_mantainances = res.data.dif_time + ' days ago';
+                this.package_risk_info.recent_mantainances =
+                  res.data.dif_time + " days ago";
               }
-          });
-        }
-        else {
-          axios.post("/searchHuman", qs.stringify({ name: this.searchValue })).then((res) => {
-            this.selected = true;
-            if (res.data === "No result") {
-              this.showPackage = false;
-              this.showAuthor = false;
-              this.info = "error";
-              this.results = "搜索结果：未查到该作者";
-            }
-            else if(res.data.human_expired == 1) {
-              this.showAuthor = true;
-              this.showPackage = false;
-              this.info = "warning";
-              this.results = "该作者域名已过期";
-              this.author_info.maintainer_overdue = true;
-              this.author_info.name = res.data.name;
-              this.author_info.email = res.data.email;
-              this.author_info.personal_site = res.data.url;
-            } 
-            else {
-              this.showAuthor = true;
-              this.showPackage = false;
-              this.info = "success";
-              this.results = "该作者域名未过期";
-              this.author_info.maintainer_overdue = false;
-              this.author_info.name = res.data.name;
-              this.author_info.email = res.data.email;
-              this.author_info.personal_site = res.data.url;
-            }
-          });
+            });
+        } else {
+          axios
+            .post("/searchHuman", qs.stringify({ name: this.searchValue }))
+            .then((res) => {
+              this.selected = true;
+              if (res.data === "No result") {
+                this.showPackage = false;
+                this.showAuthor = false;
+                this.info = "error";
+                this.results = "搜索结果：未查到该作者";
+              } else if (res.data.human_expired == 1) {
+                this.showAuthor = true;
+                this.showPackage = false;
+                this.info = "warning";
+                this.results = "该作者域名已过期";
+                this.author_info.maintainer_overdue = true;
+                this.author_info.name = res.data.name;
+                this.author_info.email = res.data.email;
+                this.author_info.personal_site = res.data.url;
+              } else {
+                this.showAuthor = true;
+                this.showPackage = false;
+                this.info = "success";
+                this.results = "该作者域名未过期";
+                this.author_info.maintainer_overdue = false;
+                this.author_info.name = res.data.name;
+                this.author_info.email = res.data.email;
+                this.author_info.personal_site = res.data.url;
+              }
+            });
         }
       }
     },
@@ -459,9 +503,7 @@ export default {
     this.getInfo();
   },
 
-  mounted() {
-
-  },
+  mounted() { },
 
   watch: {
     // searchValue(newVal, oldVal) {
@@ -542,7 +584,7 @@ main {
 .test_a {
   display: block;
   margin: 0 auto;
-  width:100%;
+  width: 100%;
   overflow: hidden;
 }
 
@@ -561,12 +603,12 @@ main {
   padding: 0 0 10px 0;
 }
 
-.el-tabs__item.is-active{
+.el-tabs__item.is-active {
   color: #00b1fd;
   font-weight: 650;
 }
 
-.el-tabs__active-bar{
+.el-tabs__active-bar {
   transition: all 0.5s;
   background-color: #00b1fd;
 }
@@ -575,7 +617,6 @@ main {
   margin: 10px 2%;
   padding: 5px 10px 10px;
   background-color: white;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .04);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.04);
 }
-
 </style>
