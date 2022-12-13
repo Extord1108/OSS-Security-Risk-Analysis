@@ -1,5 +1,5 @@
 <template>
-  <div :id="uuid" :style="style"></div>
+  <div :id="id" :style="style"></div>
 </template>
 
 <script>
@@ -9,11 +9,13 @@ const idGen = () => {
   return new Date().getTime()
 }
 
+//let myChart = null;
+
 export default {
   props: {
     height: {
       type: String,
-      default: '500px'
+      default: '400px'
     },
     width: {
       type: String,
@@ -22,6 +24,10 @@ export default {
 
     options: {
       type: Object,
+      default: null
+    },
+    id: {
+      type: String,
       default: null
     }
   },
@@ -38,16 +44,15 @@ export default {
       if(this.myChart != null) {
         setTimeout(() => {
           this.myChart.resize({
-              animation: {
-                duration: 400
-              }
+            animation: {
+              duration: 400
             }
-          )
+          })
         }, 0);
       }
     },
     options() {
-      if(this.myChart != null) {
+      if (this.myChart != null) {
         this.myChart.setOption(
           this.options, {
             notMerge: true
@@ -72,10 +77,14 @@ export default {
   },
 
   mounted() {
-    // 准备实例
-    this.myChart = echarts.init(document.getElementById(this.uuid));
-    // 应用配置项
-    this.myChart.setOption(this.options);
+    setTimeout(() => {
+      // 准备实例
+      if (echarts.getInstanceByDom(document.getElementById(this.id)) == null) {
+        this.myChart = echarts.init(document.getElementById(this.id));
+        // 应用配置项
+        this.myChart.setOption(this.options);
+      }
+    }, 1000);
   }
 }
 </script>

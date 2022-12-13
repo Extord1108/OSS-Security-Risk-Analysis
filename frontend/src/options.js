@@ -1,33 +1,22 @@
-let test_msg = "域名风险分析";
-// export default {
-//     title: {
-//         text: test_msg,
-//     },
-//     tooltip: {},
-//     legend: {
-//         data: ['数量']
-//     },
-//     xAxis: {
-//         data: ["漏洞1", "漏洞2", "漏洞3", "漏洞4", "漏洞5", "漏洞6"]
-//     },
-//     yAxis: {},
-//     series: [{
-//         name: '数量',
-//         type: 'bar',
-//         data: [5, 20, 36, 10, 10, 20]
-//     }]
-// };
+let test_msg1 = "包活跃度分析";
+let test_msg2 = "许可证分析";
+let test_msg3 = "是否提供仓库";
+let test_msg4 = "过期维护者";
+let test_msg5 = "含过期维护者的包";
+let test_msg6 = "含安装脚本的包";
+
+import {npmDependencies} from "./views/npmDependencies.js"
 
 export const options1 = {
   title: {
-    text: test_msg,
+    text: test_msg1,
   },
   tooltip: {},
   legend: {
     data: ["数量"],
   },
   xAxis: {
-    data: ["可信维护者", "风险维护者"],
+    data: ["活跃", "一般", "不活跃"],
   },
   yAxis: {},
   series: [
@@ -35,8 +24,9 @@ export const options1 = {
       name: "数量",
       type: "bar",
       data: [
-        { value: 916, name: "可信维护者" },
-        { value: 27, name: "风险维护者" },
+        { value: 24105, name: "活跃" },
+        { value: 11822, name: "一般" },
+        { value: 20908, name: "不活跃"}
       ],
     },
   ],
@@ -44,39 +34,21 @@ export const options1 = {
 
 export const options2 = {
   legend: {
-    // Try 'horizontal'
-    orient: "vertical",
-    right: 0,
-    top: "center",
+    data: ["无许可证", "宽松许可证", "严格许可证"],
   },
   title: {
-    text: test_msg,
-  },
-  dataset: {
-    source: [
-      ["product", "2020", "2021", "2022"],
-      ["风险1", 43.3, 85.8, 93.7],
-      ["风险2", 83.1, 73.4, 55.1],
-      ["风险3", 86.4, 65.2, 82.5],
-      ["风险4", 72.4, 53.9, 39.1],
-    ],
-  },
-  xAxis: { type: "category" },
-  yAxis: {},
-  series: [{ type: "bar" }, { type: "bar" }, { type: "bar" }],
-};
-
-export const options3 = {
-  legend: {
-    orient: "vertical",
-    x: "left",
-    data: ["可信包", "风险包"],
+    text: test_msg2,
   },
   series: [
     {
       type: "pie",
       radius: ["45%", "70%"],
       avoidLabelOverlap: false,
+      itemStyle: {
+        borderRadius: 10,
+        borderColor: '#fff',
+        borderWidth: 2
+      },
       label: {
         show: false,
         position: "center",
@@ -92,8 +64,33 @@ export const options3 = {
         },
       },
       data: [
-        { value: 1077, name: "可信包" },
-        { value: 27, name: "风险包" },
+        { value: 614, name: "无许可证" },
+        { value: 25558, name: "宽松许可证" },
+        { value: 30663, name: "严格许可证"}
+      ],
+    },
+  ],
+};
+
+export const options3 = {
+  title: {
+    text: test_msg3,
+  },
+  tooltip: {},
+  legend: {
+    data: ["数量"],
+  },
+  xAxis: {
+    data: ["提供仓库", "不提供仓库"],
+  },
+  yAxis: {},
+  series: [
+    {
+      name: "数量",
+      type: "bar",
+      data: [
+        { value: 24105, name: "提供仓库" },
+        { value: 11822, name: "不提供仓库" },
       ],
     },
   ],
@@ -101,33 +98,163 @@ export const options3 = {
 
 export const options4 = {
   legend: {
-    orient: "vertical",
-    x: "left",
-    data: ["风险1", "风险2", "风险3", "风险4", "风险5"],
+    data: ["域名过期维护者", "域名未过期维护者"],
   },
-  xAxis: {
-    type: "category",
-    data: ["2020", "2021", "2022"],
-  },
-  yAxis: {
-    type: "value",
+  title: {
+    text: test_msg4,
   },
   series: [
     {
-      data: [43.3, 85.8, 93.7],
-      type: "line",
-    },
-    {
-      data: [83.1, 73.4, 55.1],
-      type: "line",
-    },
-    {
-      data: [86.4, 65.2, 82.5],
-      type: "line",
-    },
-    {
-      data: [72.4, 53.9, 39.1],
-      type: "line",
+      type: "pie",
+      radius: ["45%", "70%"],
+      avoidLabelOverlap: false,
+      itemStyle: {
+        borderRadius: 10,
+        borderColor: '#fff',
+        borderWidth: 2
+      },
+      label: {
+        show: false,
+        position: "center",
+      },
+      labelLine: {
+        show: false,
+      },
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: "20",
+          fontWeight: "bold",
+        },
+      },
+      data: [
+        { value: 614, name: "域名过期维护者" },
+        { value: 25558, name: "域名未过期维护者" },
+      ],
     },
   ],
+};
+
+export const options5 = {
+  legend: {
+    data: ["过期包", "未过期包"],
+  },
+  title: {
+    text: test_msg5,
+  },
+  series: [
+    {
+      type: "pie",
+      radius: ["45%", "70%"],
+      avoidLabelOverlap: false,
+      itemStyle: {
+        borderRadius: 10,
+        borderColor: '#fff',
+        borderWidth: 2
+      },
+      label: {
+        show: false,
+        position: "center",
+      },
+      labelLine: {
+        show: false,
+      },
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: "20",
+          fontWeight: "bold",
+        },
+      },
+      data: [
+        { value: 614, name: "过期包" },
+        { value: 25558, name: "未过期包" },
+      ],
+    },
+  ],
+};
+
+export const options6 = {
+  legend: {
+    data: ["含安装脚本包", "未安装脚本包"],
+  },
+  title: {
+    text: test_msg6,
+  },
+  series: [
+    {
+      type: "pie",
+      radius: ["70%"],
+      avoidLabelOverlap: false,
+      label: {
+        show: false,
+        position: "center",
+      },
+      labelLine: {
+        show: false,
+      },
+      emphasis: {
+        label: {
+          show: true,
+          fontSize: "20",
+          fontWeight: "bold",
+        },
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      },
+      data: [
+        { value: 614, name: "含安装脚本包" },
+        { value: 25558, name: "未安装脚本包" },
+      ],
+    },
+  ],
+}
+
+export const options7 = {
+  title: {
+    text: 'NPM 依赖关系'
+  },
+  animationDurationUpdate: 1500,
+  animationEasingUpdate: 'quinticInOut',
+  series: [
+    {
+      type: 'graph',
+      layout: 'none',
+      // progressiveThreshold: 700,
+      data: npmDependencies.nodes.map(function (node) {
+        return {
+          x: node.x,
+          y: node.y,
+          id: node.id,
+          name: node.label,
+          symbolSize: node.size,
+          itemStyle: {
+            color: node.color
+          }
+        };
+      }),
+      edges: npmDependencies.edges.map(function (edge) {
+        return {
+          source: edge.sourceID,
+          target: edge.targetID
+        };
+      }),
+      emphasis: {
+        focus: 'adjacency',
+        label: {
+          position: 'right',
+          show: true
+        }
+      },
+      roam: true,
+      lineStyle: {
+        width: 0.5,
+        curveness: 0.3,
+        opacity: 0.7
+      }
+    }
+  ]
 };
