@@ -12,7 +12,7 @@ from models import *
 from flask_cors import *
 
 # 数据库连接url
-DB_CONNECT_STRING = 'mysql+pymysql://mycloud:mycloud@43.138.47.53/ossd'
+DB_CONNECT_STRING = 'mysql+pymysql://mycloud:mycloud@server_url/ossd'
 # 创建引擎
 engine = create_engine(DB_CONNECT_STRING, echo=True)
 # 自动映射

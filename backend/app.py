@@ -4,7 +4,7 @@ from intsall_cal import *
 
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
-# flask-sqlacodegen "mysql+pymysql://mycloud:mycloud@43.138.47.53/ossd" --outfile "models.py"  --flask
+# flask-sqlacodegen "mysql+pymysql://mycloud:mycloud@server_url/ossd" --outfile "models.py"  --flask
 # 数据库连接url
 
 
