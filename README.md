@@ -12,6 +12,10 @@
 
 [项目设计文档](https://blog.csdn.net/weixin_47231648/article/details/127876587)
 
+[项目实现文档](https://blog.csdn.net/weixin_47231648/article/details/128306848)
+
+[用户手册](https://blog.csdn.net/weixin_47231648/article/details/128303204)
+
 
 ## 准备
 
@@ -87,7 +91,7 @@ yarn build
 
 ## 开发任务
 
-我们初步将项目分为如下需求。
+我们目前已完成了如下任务：
 
  - [ ] 数据爬取，通过npm官方提供的接口爬取所有包的相关数据用于进一步分析。
 
